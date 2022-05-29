@@ -1,0 +1,42 @@
+@mixin greenButton{
+    
+    border-radius: 4px;
+    height: 2.9rem;
+    color: $white;
+    background: $green;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-top: 1.6rem;
+    transition: .5s ease;
+
+    &:hover{
+        background: $green-darker;
+    }
+    
+}
+
+@mixin transButton {
+    border-radius: 4px;
+    height: 2.9rem;
+    width: 22.625rem;
+    color: $white;
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    background: transparent;
+    border: 1px solid $white;
+    transition: .5s ease;
+    &:hover{
+        background: white;
+
+        a, i{
+            color: black;
+        }
+    }
+}
+
+@mixin carrouselArrow {
+    position: absolute;
+    top: 47.92%;
+    color: white;
+    cursor: pointer;
+}

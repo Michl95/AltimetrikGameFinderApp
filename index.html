@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+
+   
+
+</head>
+<body>
+    <header><img class="logo" src="img/GAMEFINDER.svg" alt="Logo"></header>
+        <div class="form_container">
+            <div class="message">
+                <h2>Welcome! Log in or register</h2>
+                <p>Log in to find the games you're looking for!</p>
+            </div>
+            
+            <form action="" class="form">
+                <input class="form_email" type="email" placeholder="Email">
+                <span><input class="form_pass" type="password" placeholder="Password"><img class="form_pass_eye" src="img/input_pass_eye.svg"><img class="form_pass_eye--visible" src="img/eye_pass_visible.svg"></span>
+                <div>
+                    <label>
+                        <input class="form_check" type="checkbox" name="key" value="value"/>
+                        <span>Remember Me</span>
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button class="btn" type="submit">Log in</button>
+
+                <span class="rgister"><p>Not registered yet? <a href="#">Register now</a></p></span>
+            </form>
+            <div class="form_container_line">
+                <hr>
+                <span>or</span>
+                <hr>
+            </div>
+            <div class="form_container_social-btns">
+                <button class="btn-t"><span><img src="img/facebook.svg" alt=""><a class="fb" href="#">Login with Facebook</a></span></button>
+                <button class="btn-t"><span><img src="img/twitter.svg" alt=""><a class="tw" href="#">Login with Twitter</a></span></button>
+                <button class="btn-t"><span><img src="img/google.svg" alt=""><a class="gl" href="#">Login with Google</a></span></button>
+            </div>
+        </div>
+<!---------------------------------------------------------------------------------------------------------------------->
+
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img src="img/BG.png">
+    </div>
+    <div class="mySlides fade">
+        <img src="https://th.bing.com/th/id/R.40b2aa244a2ce0ab08a35f0252932209?rik=hhEWEjy4Q%2f22qg&pid=ImgRaw&r=0">
+    </div>
+    <div class="mySlides fade">
+        <img src="https://images.hdqwalls.com/download/pubg-game-new-2021-cb-1920x1080.jpg">  
+    </div>
+    <div class="mySlides fade">
+        <img src="https://www.theloadout.com/wp-content/uploads/2020/07/hyper-scape-key-art.jpeg">  
+    </div>
+    <div class="mySlides fade">
+        <img src="https://th.bing.com/th/id/R.1ec8bdf5fc1b95688319df126cf35a06?rik=1I%2bslfpwhRy0qw&pid=ImgRaw&r=0">  
+    </div>
+    <div class="mySlides fade">
+        <img src="https://i.pinimg.com/originals/f7/5c/82/f75c8244cff27d296637ec9d894a00e8.jpg">  
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)"><img src="img/ChevronLeftDark.svg" alt="Carousel left arrow"></a>
+    <a class="next" onclick="plusSlides(1)"><img src="img/ChevronRightDark.svg" alt="Carousel  right arrow"></a>
+</div>
+<div class="carousel_dots_container">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+</div>
+    <script src="js/script.js"></script>
+</body>
+</html>
