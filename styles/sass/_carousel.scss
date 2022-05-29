@@ -58,7 +58,7 @@
     border-radius: 14px;
     padding: .625rem 1rem .625rem 1rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 7.5rem;
     height: 1.7rem;
@@ -68,6 +68,7 @@
         cursor: pointer;
         height: .4375rem;
         width: .4375rem;
+        margin-left: .125rem;
         background-color: $grey-lighter;
         border-radius: 50%;
         display: inline-block;

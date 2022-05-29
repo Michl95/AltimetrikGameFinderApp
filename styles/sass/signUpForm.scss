@@ -19,7 +19,7 @@
     }
     p{
         font-size: 1rem;
-        margin-top: .5rem;
+        margin-top: .65rem;
     }
 
    form{
@@ -124,19 +124,17 @@
 
   .form_container_line{
       display: flex;
-      width: 75%;
+      width: 22.625rem;
       margin: auto;
       align-items: center;
       margin-top: 1.5rem;
       hr{
           border: 1px solid white;
           width: 50%;
-          height: 1px;
           opacity: .3;
-          padding: 0 1rem 0 1rem;
       }
       span{
-          margin: 0 .8rem 0 .8rem;
+          margin: 0 1.5rem 0 1.5rem;
           color: $white;
           font-size: .8rem;
       }
