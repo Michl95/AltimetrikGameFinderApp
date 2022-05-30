@@ -12,9 +12,13 @@
 }
 
 html, body{
-    height: 100%;
+    height: auto;
     max-width: 1494px;
     margin: auto;
+}
+
+p{
+    color: $white;
 }
  
 

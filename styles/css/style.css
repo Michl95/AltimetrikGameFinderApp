@@ -11,9 +11,12 @@
   font-family: 'Exo', monospace; }
 
 html, body {
-  height: 100%;
+  height: auto;
   max-width: 1494px;
   margin: auto; }
+
+p {
+  color: #ffff; }
 
 /* Slideshow container */
 .slideshow-container {
@@ -239,8 +242,43 @@ html, body {
       .form_container .form_container_social-btns .btn-t .gl {
         margin-left: 1.8rem; }
 
-header {
+header .logo {
   position: absolute;
   z-index: 1000;
   left: 3.33rem;
   top: 2.77rem; }
+
+.header--second-page {
+  width: 100%;
+  height: 5.875rem;
+  background: linear-gradient(180deg, #5FE19B 0%, #36B972 50%, #0EA152 100%); }
+  .header--second-page .nav_top {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding-left: 2.5rem; }
+    .header--second-page .nav_top .logo--second-page {
+      width: 16.875rem; }
+    .header--second-page .nav_top span {
+      position: relative;
+      margin-left: 14.5rem; }
+      .header--second-page .nav_top span input {
+        width: 22.625rem;
+        height: 2.9375rem;
+        border-radius: 4px;
+        padding-left: 2.5rem; }
+      .header--second-page .nav_top span .search-bar--icon {
+        position: absolute;
+        top: .9rem;
+        left: .3rem; }
+    .header--second-page .nav_top .nav_top_user-profile {
+      display: flex;
+      margin-left: 23.7rem;
+      align-items: center; }
+      .header--second-page .nav_top .nav_top_user-profile .user-photo {
+        margin-left: 1rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 2px solid #ffff; }
