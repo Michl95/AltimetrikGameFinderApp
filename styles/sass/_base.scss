@@ -15,6 +15,7 @@ html, body{
     height: auto;
     max-width: 1440px;
     margin: auto;
+    position: relative; // my login form was moving outside the body when the screen was bigger than 1400x1024. added a relative to the parent. fixed.
 }
 
 p{
