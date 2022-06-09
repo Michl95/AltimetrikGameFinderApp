@@ -1,5 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Exo:wght@100;300;400;600;700&display=swap");
+.icon {
+  filter: invert(85%) sepia(14%) saturate(1530%) hue-rotate(86deg) brightness(94%) contrast(87%); }
+
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +15,44 @@
 
 html, body {
   height: auto;
-  max-width: 1494px;
+  max-width: 1440px;
   margin: auto; }
 
 p {
   color: #ffff; }
+
+main {
+  width: 100%;
+  height: 100%; }
+
+.second-page {
+  background: #151515; }
+
+.text-m {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.495rem; }
+
+.text-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffff; }
+
+.text_card-500 {
+  font-weight: 500;
+  font-size: .875rem;
+  color: #939393; }
+
+.text_card-400 {
+  font-weight: 400;
+  font-size: .875rem;
+  color: #ffff; }
+
+.number {
+  font-weight: 700;
+  color: #36B972;
+  font-size: 1.125rem;
+  margin-top: .2rem; }
 
 /* Slideshow container */
 .slideshow-container {
@@ -35,13 +71,13 @@ p {
       object-fit: cover; }
   .slideshow-container .prev {
     position: absolute;
-    top: 47.92%;
+    top: 49.5%;
     color: white;
     cursor: pointer;
     left: 2rem; }
   .slideshow-container .next {
     position: absolute;
-    top: 47.92%;
+    top: 49.5%;
     color: white;
     cursor: pointer;
     right: 2rem; }
@@ -66,7 +102,7 @@ p {
 /* The dots/bullets/indicators */
 .carousel_dots_container {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 50%;
   transform: translate(-50%);
   background: #515151;
@@ -125,7 +161,7 @@ p {
     flex-direction: column;
     width: 22.625rem;
     margin: auto;
-    margin-top: 2.5rem; }
+    margin-top: 2.4rem; }
     .form_container form span {
       display: flex;
       position: relative; }
@@ -190,7 +226,7 @@ p {
       font-size: .875rem; }
     .form_container form .rgister {
       margin: auto;
-      margin-top: 1.5rem; }
+      margin-top: 1.3rem; }
       .form_container form .rgister p, .form_container form .rgister a {
         font-size: .875rem; }
       .form_container form .rgister a {
@@ -245,40 +281,178 @@ p {
 header .logo {
   position: absolute;
   z-index: 1000;
-  left: 3.33rem;
-  top: 2.77rem; }
+  left: 3.6rem;
+  top: 2.77rem;
+  width: 289px; }
 
-.header--second-page {
+.header_second-page {
+  position: sticky;
+  top: 0;
+  z-index: 999999;
   width: 100%;
   height: 5.875rem;
   background: linear-gradient(180deg, #5FE19B 0%, #36B972 50%, #0EA152 100%); }
-  .header--second-page .nav_top {
+  .header_second-page .nav_top {
     display: flex;
     align-items: center;
     height: 100%;
     width: 100%;
     padding-left: 2.5rem; }
-    .header--second-page .nav_top .logo--second-page {
+    .header_second-page .nav_top .logo--second-page {
       width: 16.875rem; }
-    .header--second-page .nav_top span {
+    .header_second-page .nav_top span {
       position: relative;
-      margin-left: 14.5rem; }
-      .header--second-page .nav_top span input {
+      margin-left: 14.3rem; }
+      .header_second-page .nav_top span input {
         width: 22.625rem;
         height: 2.9375rem;
         border-radius: 4px;
-        padding-left: 2.5rem; }
-      .header--second-page .nav_top span .search-bar--icon {
+        padding-left: 2.5rem;
+        font-size: .9375rem; }
+      .header_second-page .nav_top span .search-bar--icon {
         position: absolute;
         top: .9rem;
-        left: .3rem; }
-    .header--second-page .nav_top .nav_top_user-profile {
+        left: .5rem; }
+    .header_second-page .nav_top .nav_top_user-profile {
       display: flex;
-      margin-left: 23.7rem;
+      margin-left: 23.9rem;
       align-items: center; }
-      .header--second-page .nav_top .nav_top_user-profile .user-photo {
-        margin-left: 1rem;
+      .header_second-page .nav_top .nav_top_user-profile .user-photo {
+        margin-left: .9rem;
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
         border: 2px solid #ffff; }
+
+.main_second-page header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.1875rem 2.5rem 0 2.5rem;
+  position: sticky;
+  top: 5.875rem;
+  z-index: 999998;
+  background: #151515; }
+  .main_second-page header .header_title h1 {
+    font-size: 3rem;
+    color: #ffff;
+    font-weight: 800; }
+  .main_second-page header .header_title p {
+    font-size: 1.125rem;
+    margin-top: .1rem;
+    font-weight: 400; }
+  .main_second-page header .thumbnail_view {
+    margin-right: 1.5rem; }
+  .main_second-page header .option_switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.75rem; }
+    .main_second-page header .option_switch p {
+      margin-right: 1rem;
+      font-size: .9375rem;
+      font-weight: 400; }
+  .main_second-page header .option_view {
+    display: flex;
+    justify-content: end; }
+  .main_second-page header .option_container {
+    margin-top: .7rem; }
+
+.aside_nav {
+  height: 100%;
+  width: fit-content;
+  position: fixed; }
+  .aside_nav .aside_nav--main {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding-left: 2.5rem;
+    margin-top: 1.3rem; }
+    .aside_nav .aside_nav--main li {
+      margin-top: .9rem; }
+    .aside_nav .aside_nav--main a {
+      color: #ffff; }
+  .aside_nav .aside_nav--secondary {
+    padding-left: 2.5rem;
+    margin-top: 2.3125rem; }
+    .aside_nav .aside_nav--secondary li {
+      margin-top: 1.1rem;
+      display: flex;
+      align-items: center; }
+    .aside_nav .aside_nav--secondary a {
+      color: #ffff;
+      margin-left: .79rem; }
+  .aside_nav .aside_nav--popular {
+    padding-left: 2.7rem;
+    font-size: 1.25rem;
+    margin-top: 3.4375rem; }
+    .aside_nav .aside_nav--popular li {
+      margin-top: .95rem;
+      display: flex;
+      align-items: center; }
+      .aside_nav .aside_nav--popular li h4 {
+        font-size: 1.375rem;
+        color: #ffff; }
+      .aside_nav .aside_nav--popular li a {
+        color: #ffff;
+        margin-left: .79rem;
+        margin-top: .15rem; }
+
+.game-card_container {
+  margin: 1.4rem 2.5rem 0 16.4375rem;
+  display: grid;
+  grid-template-columns: repeat(3, 22.6875rem);
+  gap: 1.5rem; }
+  .game-card_container .game-card {
+    width: 22.6875rem;
+    height: 19.625rem;
+    border-radius: 12px; }
+    .game-card_container .game-card .game-card_img_container {
+      position: relative;
+      height: 11.1875rem; }
+      .game-card_container .game-card .game-card_img_container .game-card--heart {
+        position: absolute;
+        right: 13.33px;
+        top: 14.67px;
+        width: 21.33px;
+        height: 20px; }
+      .game-card_container .game-card .game-card_img_container .game-card--img {
+        width: 100%;
+        height: 11.1875rem;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0; }
+    .game-card_container .game-card .game-card_info--container {
+      background: #303030;
+      width: 100%;
+      height: 8.4375rem;
+      border-radius: 0 0 12px 12px; }
+      .game-card_container .game-card .game-card_info--container .game-card_title-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 1rem 0 1rem; }
+      .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container {
+        display: flex;
+        margin-top: 1rem;
+        padding: 0 1rem 0 1rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .realease {
+          width: 6.8125rem;
+          margin-top: .2rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .date {
+          width: 7.8125rem;
+          margin-top: .2rem;
+          margin-left: .8rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container {
+          display: flex; }
+          .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container svg {
+            margin-left: 1rem; }
+      .game-card_container .game-card .game-card_info--container .game-card_genre--container {
+        display: flex;
+        padding: 0 1rem 0 1rem;
+        margin-top: .6rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_genre--container .genre {
+          width: 6.8125rem; }
+
+footer .linear-gradient {
+  width: 100%;
+  height: 6.75rem;
+  background: black;
+  background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%);
+  position: fixed;
+  bottom: 0; }

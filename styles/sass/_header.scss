@@ -1,4 +1,7 @@
-.header--second-page{
+.header_second-page{
+    position: sticky;
+    top: 0;
+    z-index: 999999;
     width: 100%;
     height: 5.875rem;
     background: linear-gradient(180deg, #5FE19B 0%, #36B972 50%, #0EA152 100%);
@@ -17,28 +20,29 @@
 
         span{
             position: relative;
-            margin-left: 14.5rem;
+            margin-left: 14.3rem;
             input{
                 width: 22.625rem;
                 height: 2.9375rem;
                 border-radius: 4px;
                 padding-left: 2.5rem;
+                font-size: .9375rem;
             }
             .search-bar--icon{
                 position: absolute;
                 top: .9rem;
-                left: .3rem;
+                left: .5rem;
             }
         }
 
 
         .nav_top_user-profile{
             display: flex;
-            margin-left: 23.7rem;
+            margin-left: 23.9rem;
             align-items: center;
 
             .user-photo{
-                margin-left: 1rem;
+                margin-left: .9rem;
                 width: 3rem;
                 height: 3rem;
                 border-radius: 50%;
