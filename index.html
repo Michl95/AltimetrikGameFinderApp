@@ -19,9 +19,10 @@
                 <p>Log in to find the games you're looking for!</p>
             </div>
             
-            <form action="" class="form">
-                <input class="form_email" type="email" placeholder="Email">
-                <span><input class="form_pass" type="password" placeholder="Password"><img class="form_pass_eye" src="img/input_pass_eye.svg"><img class="form_pass_eye--visible" src="img/eye_pass_visible.svg"></span>
+            <form action="/" class="form" method="GET" id="form">
+                <input class="form_email" type="email" placeholder="Email" id="email">
+                <small>Error Message</small>
+                <span><input class="form_pass" type="password" placeholder="Password" id="password" minlength="8"><img class="form_pass_eye" src="img/input_pass_eye.svg"><img class="form_pass_eye--visible" src="img/eye_pass_visible.svg"></span>
                 <div>
                     <label>
                         <input class="form_check" type="checkbox" name="key" value="value"/>
@@ -29,7 +30,7 @@
                     </label>
                     <a href="#">Forgot password?</a>
                 </div>
-                <button class="btn" type="submit">Log in</button>
+                <button class="btn" type="submit" id="submit">Log in</button>
 
                 <span class="rgister"><p>Not registered yet? <a href="#">Register now</a></p></span>
             </form>
@@ -78,5 +79,6 @@
     <span class="dot" onclick="currentSlide(6)"></span>
 </div>
     <script src="js/script.js"></script>
+    <script src="js/formValidation.js"></script>
 </body>
 </html>

@@ -164,6 +164,8 @@ main {
     width: 22.625rem;
     margin: auto;
     margin-top: 2.4rem; }
+    .form_container form small {
+      display: none; }
     .form_container form span {
       display: flex;
       position: relative; }
@@ -182,6 +184,10 @@ main {
       height: 2.97rem;
       border-radius: 2px;
       padding-left: 1rem; }
+    .form_container form .error {
+      border: 1px solid red; }
+    .form_container form .success {
+      border: 1px solid green; }
     .form_container form div {
       display: flex;
       justify-content: space-between;
