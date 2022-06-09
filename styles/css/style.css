@@ -16,7 +16,8 @@
 html, body {
   height: auto;
   max-width: 1440px;
-  margin: auto; }
+  margin: auto;
+  position: relative; }
 
 p {
   color: #ffff; }
