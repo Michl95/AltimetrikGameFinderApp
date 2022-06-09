@@ -14,6 +14,7 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
+          min-height: 1024px;
       }
   }
 
@@ -51,7 +52,7 @@
 .carousel_dots_container{
 
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translate(-50%);
     background: $grey-solid;

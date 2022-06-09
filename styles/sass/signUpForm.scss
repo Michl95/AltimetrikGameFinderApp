@@ -1,10 +1,13 @@
 .form_container{
     z-index: 100000;
     position: absolute;
-    top: 11.125rem;
+   top: 11.125rem;
+    // top: 10.9rem; // medida si adapto la imagen a 1440x1024
     right: 6.25rem;
     height: 43.875rem;
     width: 28.875rem;
+    // height: 42rem; // medida si adapto la imagen a 1440x1024
+    // width: 27.8rem; // medida si adapto la imagen a 1440x1024
     background: $black-ish;
     border-radius: 12px;
     backdrop-filter: blur(3px);
@@ -27,7 +30,7 @@
        flex-direction: column;
        width: 22.625rem;
        margin: auto;
-       margin-top: 2.5rem;
+       margin-top: 2.4rem;
 
        span{
            display: flex;
@@ -112,7 +115,7 @@
 
     .rgister{
         margin: auto;
-        margin-top: 1.5rem;
+        margin-top: 1.3rem;
         p, a{
             font-size: .875rem;
         }
