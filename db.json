@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$T/.lIYrIJCNdYrsb/UpcMeM1l4WK24gH.KYAIMvzkNNAWyMqX8D0q",
+      "id": 1
+    },
+    {
+      "email": "michael.armesto@gmail.com",
+      "password": "$2a$10$D7UVTSnHZBwTVuol5W6ZXeK4MDi87S.t.oMmdnSiRyH2mgnHVdvVq",
+      "id": 2
+    },
+    {
+      "email": "michaelArmesto@gmail.com",
+      "password": "$2a$10$IJ.HiQ70juqL/05Cm/qYmed/vN.wCPm3XWV/rPh4BNH6wtRGiH1vS",
+      "id": 3
+    }
+  ]
+}
