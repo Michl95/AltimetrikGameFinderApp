@@ -32,11 +32,15 @@
        margin: auto;
        margin-top: 2.4rem;
 
+       small{
+           display:none;
+       }
+
        span{
            display: flex;
            position: relative;
 
-           img{
+           svg{
                position: absolute;
                top: 50%;
                right: .57rem;
@@ -50,6 +54,9 @@
            .form_pass_eye--visible{
                display: none;
            }
+           .form_pass_eye--error{
+               display: none;
+           }
        }
 
 
@@ -58,6 +65,12 @@
            height: 2.97rem;
            border-radius: 2px;
            padding-left: 1rem;
+       }
+       .errorMsg{
+           color: red;
+       }
+       .validMsg{
+           color: green;
        }
 
        div{
