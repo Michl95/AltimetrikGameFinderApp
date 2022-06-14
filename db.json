@@ -14,6 +14,11 @@
       "email": "michaelArmesto@gmail.com",
       "password": "$2a$10$IJ.HiQ70juqL/05Cm/qYmed/vN.wCPm3XWV/rPh4BNH6wtRGiH1vS",
       "id": 3
+    },
+    {
+      "email": "Armesto@mail.com",
+      "password": "$2a$10$sBab8pq07r7SUfkDQ52m5.XamVIQPwUosVEawQLCWiIrTSaZW3Eoe",
+      "id": 4
     }
   ]
 }

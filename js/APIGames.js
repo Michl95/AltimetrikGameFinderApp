@@ -1,82 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-</head>
-
-<body class="second-page">
-
-    <header class="header_second-page">
-        <nav class="nav_top">
-            <img class="logo--second-page" src="img/GAMEFINDER.svg" alt="">
-            <span class="nav_top--search-bar">
-                <img class="search-bar--icon" src="img/search.svg" alt="">
-                <input type="text" name="search" id="searchbar" placeholder="Search games...">
-            </span>
-            <div class="nav_top_user-profile">
-                <p class="logOut">Log out</p>
-                <img class="user-photo" src="img/userProfile.png" alt="">
-            </div>
-        </nav>
-    </header>
-
-    <main class="main_second-page">
-        <header>
-            <div class="header_title">
-                <h1>New and trending</h1>
-                <p>Based on player counts and realease date</p>
-            </div>
-            <div class="option_container">
-                <span class="option_switch"><p>Dark Mode</p><img src="img/switchOn.svg" alt=""></span>
-                <div class="option_view">
-                    <img class="thumbnail_view" src="img/ThumbnailsActive.svg" alt="">
-                    <img class="gallery_view" src="img/galleryActive.svg" alt="">
-                </div>
-            </div>
-        </header>
-        <aside class="aside_nav">
-            <nav>
-                <ul class="aside_nav--main">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Reviews</a></li>
-                    <li><a href="">New Releases</a></li>
-                </ul>
-                <ul class="aside_nav--secondary">
-                    <li><img class="icon" src="img/star.svg" alt=""><a class="text-m" href="">This week</a></li>
-                    <li><img class="icon" src="img/calendar.svg" alt=""><a class="text-m" href="">This month</a></li>
-                    <li><img class="icon" src="img/clock.svg" alt=""><a class="text-m" href="">Coming soon</a></li>
-                </ul>
-                <ul class="aside_nav--popular">
-                    <li>
-                        <h4>Popular</h4>
-                    </li>
-                    <li><img class="icon" src="img/search.svg" alt=""><a class="text-m" href="">Last searches</a></li>
-                    <li><img class="icon" src="img/thumbUp.svg" alt=""><a class="text-m" href="">Best of the year</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <section class="game-card_container" id="game-card_container">
-            <!-- <div class="game-card">
+const loadGames = async() => { // connects to our API, loads the games and put it in out container
+    try {
+        const response = await fetch('https://api.rawg.io/api/games?key=0287d94a76d24548a822e6b8ce6351c8'); // fetch return a promise and we store it in our variable, a promise means that we are making a request but we have to wait until it finished before doing something with it
+        // if our response is OK
+        if (response.status === 200) {
+            const res = await response.json();
+            console.log(res.results)
+            let games = '';
+            res.results.forEach(game => {
+                games += `<div class="game-card">
                 <div class="game-card_img_container">
                     <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
                     </svg>
-                    <img class="game-card--img" src="img/gameExample.jpg" alt="">
+                    <img class="game-card--img" src="${game.background_image}" alt="">
                 </div>
                 <div class="game-card_info--container">
                     <div class="game-card_title-container">
-                        <h3 class="game-card--title text-title">Biomutant</h3>
-                        <span class="game-card--number number">#1</span>
+                        <h3 class="game-card--title text-title">${game.name}</h3>
+                        <span class="game-card--number number">#${game.rating}</span>
                     </div>
                     <div class="game-card_releaseDate-container">
                         <p class="text_card-500 realease">Release date:</p>
-                        <p class="text_card-400 date">May 31, 2021</p>
+                        <p class="text_card-400 date">${game.released}</p>
                         <span class="game-card_icon--container">
                             <svg class="playstation" id="playstation" width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.55164 9.53674e-06L9.55164 18.2774L13.3604 19.5885L13.3604 4.26319C13.3604 3.54103 13.6567 3.06155 14.132 3.22645C14.7534 3.41372 14.8742 4.07895 14.8742 4.79307L14.8742 10.9138C17.2449 12.1606 19.1114 10.9131 19.1114 7.62345C19.1114 4.26188 18.0171 2.76435 14.7972 1.56033C13.5271 1.10084 11.1734 0.325457 9.55164 9.53674e-06Z" fill="#ffffff"/>
@@ -97,13 +42,21 @@
                         <p class="text_card-400">Action, RPG</p>
                     </div>
                 </div>
-            </div> -->
-        </section>
-    </main>
-    <footer>
-        <div class="linear-gradient"></div>
-    </footer>
-    <script src="js/APIGames.js"></script>
-</body>
+            </div>`;
+            });
+            document.getElementById('game-card_container').innerHTML = games;
+        } else if (response.status === 401) {
+            console.log('Your key is not working');
+        } else if (response.status === 404) {
+            console.log('The game does not exist');
+        } else {
+            console.log('Something went wrong');
+        }
 
-</html>
+    } catch (error) { // this has nothing to do with our request. in case there is an error it will show us in details
+        console.log(error);
+    }
+}
+
+// whne working with asyn function is  good to work with try and catch.
+loadGames()
