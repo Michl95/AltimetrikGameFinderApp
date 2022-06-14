@@ -1,6 +1,16 @@
 let games = ''; // by assigning a global scope to this variable I keep the previous games loaded while new games are being loaded
 let page = 1;
 let lastGameOneScreen; // by default when we load for the first time we are not going to have 
+let searchBtn = document.getElementById('searchbar');
+const searchSuggestion = document.getElementById('game_search_suggestion');
+
+searchBtn.addEventListener('keyup', () => {
+    searchSuggestion.style.display = 'block'
+})
+searchBtn.addEventListener('blur', () => {
+    searchSuggestion.style.display = 'none'
+})
+
 
 // observer
 // I want it to be a new instance - I need to pass two things, the function I want to be executed when we are making use of our observer - When I reach the last game I want to execute a function that loads new games

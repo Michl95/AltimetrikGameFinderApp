@@ -323,6 +323,14 @@ header .logo {
         position: absolute;
         top: .9rem;
         left: .5rem; }
+      .header_second-page .nav_top span .game_search_suggestion {
+        background: #ffff;
+        position: absolute;
+        width: 100%;
+        height: auto;
+        display: none; }
+        .header_second-page .nav_top span .game_search_suggestion .game_search--item {
+          padding: .25rem; }
     .header_second-page .nav_top .nav_top_user-profile {
       display: flex;
       margin-left: 23.9rem;
@@ -406,7 +414,7 @@ header .logo {
         margin-top: .15rem; }
 
 .game-card_container {
-  margin: 1.4rem 2.5rem 0 16.4375rem;
+  margin: 0 2.5rem 0 16.4375rem;
   display: grid;
   grid-template-columns: repeat(3, 22.6875rem);
   gap: 1.5rem; }

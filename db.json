@@ -19,6 +19,11 @@
       "email": "Armesto@mail.com",
       "password": "$2a$10$sBab8pq07r7SUfkDQ52m5.XamVIQPwUosVEawQLCWiIrTSaZW3Eoe",
       "id": 4
+    },
+    {
+      "email": "holapepe@gmail.com",
+      "password": "$2a$10$JUz.1A979enP/Zy2PaQ6Pe47jDw5.DZnOEcibN3poL29a5bcxUljK",
+      "id": 5
     }
   ]
 }

@@ -1,28 +1,29 @@
 {
-  "name": "altimetrikgamefinderapp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss styles/sass/style.scss styles/css/style.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "json:server": "json-server --watch db.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Michl95/AltimetrikGameFinderApp.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Michl95/AltimetrikGameFinderApp/issues"
-  },
-  "homepage": "https://github.com/Michl95/AltimetrikGameFinderApp#readme",
-  "devDependencies": {
-    "json-server": "^0.17.0",
-    "json-server-auth": "^2.1.0",
-    "node-sass": "^7.0.1",
-    "nodemon": "^2.0.16"
-  }
+    "name": "altimetrikgamefinderapp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build-css": "node-sass --include-path scss styles/sass/style.scss styles/css/style.css",
+        "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+        "json:server": "json-server --watch db.json",
+        "json-server": "json-server db.json -m ./node_modules/json-server-auth"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Michl95/AltimetrikGameFinderApp.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Michl95/AltimetrikGameFinderApp/issues"
+    },
+    "homepage": "https://github.com/Michl95/AltimetrikGameFinderApp#readme",
+    "devDependencies": {
+        "json-server": "^0.17.0",
+        "json-server-auth": "^2.1.0",
+        "node-sass": "^7.0.1",
+        "nodemon": "^2.0.16"
+    }
 }
