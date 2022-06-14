@@ -1,11 +1,32 @@
+let games = ''; // by assigning a global scope to this variable I keep the previous games loaded while new games are being loaded
+let page = 1;
+let lastGameOneScreen; // by default when we load for the first time we are not going to have 
+
+// observer
+// I want it to be a new instance - I need to pass two things, the function I want to be executed when we are making use of our observer - When I reach the last game I want to execute a function that loads new games
+let observer = new IntersectionObserver((entrys) => {
+    // we access to entrys through a forEach
+    entrys.forEach(entry => {
+        // I`ll check if our target which is our last game has a particual property - means that is on screen - watch for all of our games and forEach one ask if it has a certin property
+        if (entry.isIntersecting) {
+            page++;
+            loadGames();
+
+        }
+    });
+}, {
+    // Observer options - added marginBottom to give time to do the request for better fluency
+    rootMargin: '0px 0px 400px 0px',
+    threshold: 1.0
+});
+
+
 const loadGames = async() => { // connects to our API, loads the games and put it in out container
     try {
-        const response = await fetch('https://api.rawg.io/api/games?key=0287d94a76d24548a822e6b8ce6351c8'); // fetch return a promise and we store it in our variable, a promise means that we are making a request but we have to wait until it finished before doing something with it
+        const response = await fetch(`https://api.rawg.io/api/games?key=0287d94a76d24548a822e6b8ce6351c8&page=${page}`); // fetch return a promise and we store it in our variable, a promise means that we are making a request but we have to wait until it finished before doing something with it
         // if our response is OK
         if (response.status === 200) {
             const res = await response.json();
-            console.log(res.results)
-            let games = '';
             res.results.forEach(game => {
                 games += `<div class="game-card">
                 <div class="game-card_img_container">
@@ -45,6 +66,23 @@ const loadGames = async() => { // connects to our API, loads the games and put i
             </div>`;
             });
             document.getElementById('game-card_container').innerHTML = games;
+            // when our site reaches the last page we are going to stop runing this code otherwise our page will break into super tiny small pieces
+            if (page < 37397) {
+
+                // if I have already a game stored in that variable being observed I want it to stop observing it - Don't be a creep.
+                if (lastGameOneScreen) {
+                    observer.unobserve(lastGameOneScreen);
+                }
+                // and then I execute this code to observe my new last game
+                const gamesOnScreen = document.querySelectorAll('.game-card_container .game-card');
+
+                // getting the last game I have on screen and store it
+                lastGameOneScreen = gamesOnScreen[gamesOnScreen.length - 1];
+
+                // when our variable enters in our screen i want or observer to execute our code
+                observer.observe(lastGameOneScreen)
+            }
+
         } else if (response.status === 401) {
             console.log('Your key is not working');
         } else if (response.status === 404) {
