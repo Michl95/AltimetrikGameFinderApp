@@ -110,7 +110,7 @@ const loadGames = async() => { // connects to our API, loads the games and put i
                 </div>
                 <div class="game-card_info--container">
                     <div class="game-card_title-container">
-                        <h3 class="game-card--title text-title">${game.name}</h3>
+                        <h5 class="game-card--title text-title">${game.name}</h5>
                         <span class="game-card--number number">#${counter}</span>
                     </div>
                     <div class="game-card_releaseDate-container">
