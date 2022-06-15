@@ -83,7 +83,7 @@ async function apiCall() {
             .then(
                 (json) => {
                     if (json.accessToken) {
-                        window.location.assign('../secondPage.html');
+                        window.location.assign('../pages/secondPage.html');
                     } else {
                         //alert("email o contrasena no son validas");
                         password.style.border = "1px solid red"

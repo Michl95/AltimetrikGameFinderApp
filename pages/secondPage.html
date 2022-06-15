@@ -8,16 +8,17 @@
     <meta name="description" content="Website for searching every game that comes to your mind">
     <meta name="keywords" content="games, game, search, gamefinder, gaming, play ">
     <title>GameFinder|Home</title>
-    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="../styles/css/style.css">
+    <link rel="shortcut icon" href="../assets/icons/faviconHome.svg" type="image/x-icon">
 </head>
 
 <body class="second-page">
 
     <header class="header_second-page">
         <nav class="nav_top">
-            <img class="logo--second-page" src="/assets/icons/gamefinderLogo.svg" alt="">
+            <img class="logo--second-page" src="../assets/icons/gamefinderLogo.svg" alt="">
             <span class="nav_top--search-bar">
-                <button name="Search games" onclick="searchGames()"><img class="search-bar--icon" src="assets/icons/searchIcon.svg" alt="Search games"></button>
+                <button name="Search games" onclick="searchGames()"><img class="search-bar--icon" src="../assets/icons/searchIcon.svg" alt="Search games"></button>
                 <input type="search" name="search" id="searchbar" placeholder="Search games...">
                 <ul class="game_search_suggestion" id="game_search_suggestion">
                     <li class="game_search--item">Game Title #1</li>
@@ -28,7 +29,7 @@
             </span>
             <div class="nav_top_user-profile">
                 <p class="logOut">Log out</p>
-                <img class="user-photo" src="/assets/img/userProfile.png" alt="">
+                <img class="user-photo" src="../assets/img/userProfile.png" alt="">
             </div>
         </nav>
     </header>
@@ -40,7 +41,7 @@
                 <p>Based on player counts and realease date</p>
             </div>
             <div class="option_container">
-                <span class="option_switch"><p>Dark Mode</p><img src="assets/icons/switchOnIcon.svg" alt=""></span>
+                <span class="option_switch"><p>Dark Mode</p><img src="../assets/icons/switchOnIcon.svg" alt=""></span>
                 <div class="option_view">
                     <svg class="thumbnail_view" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="10" fill="#515151"/>
@@ -126,7 +127,7 @@
     <footer>
         <div class="linear-gradient"></div>
     </footer>
-    <script src="js/APIGames.js"></script>
+    <script src="../js/APIGames.js"></script>
 </body>
 
 </html>
