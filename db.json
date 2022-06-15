@@ -24,6 +24,11 @@
       "email": "holapepe@gmail.com",
       "password": "$2a$10$JUz.1A979enP/Zy2PaQ6Pe47jDw5.DZnOEcibN3poL29a5bcxUljK",
       "id": 5
+    },
+    {
+      "email": "bfeda-test-2022@gmail.com",
+      "password": "$2a$10$KMF6145X5X6JBQF6IIh/dO0v0JQZqrMeYuLOrGNDQg1FOlkIuunuu",
+      "id": 6
     }
   ]
 }

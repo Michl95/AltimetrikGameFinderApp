@@ -9,31 +9,32 @@ let eyeError = document.getElementById("form_pass_eye--error");
 let eye = document.getElementById("form_pass_eye");
 
 
-const expresion = {
-    password: /^.{8,12}$/,
+const regex = {
+    //min 8 max 14, one uppercase letter, one lowercase letter, one number and one special character
+    password: /(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,14}$/,
     email: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/
 }
 
 const category = {
     email: 'Must be a valid email address',
-    pass: 'Must be a valid password',
+    pass: 'Password must be bewteen 8-14 characters and contain at least one uppercase, one lowercase, one number, a special character.',
 }
 
 
 const validation = (e) => {
     switch (e.target.name) {
         case "email": // in case our input name match i want to execute a certain code -
-            validateInput(expresion.email, e.target, email, emailText, category.email);
+            validateInput(regex.email, e.target, email, emailText, category.email);
             break;
         case "password":
-            validateInput(expresion.password, e.target, password, passText, category.pass);
+            validateInput(regex.password, e.target, password, passText, category.pass);
             break;
     }
 }
 
-const validateInput = (expresion, target, input, text, cat) => { // I put 
+const validateInput = (regex, target, input, text, cat) => { // I put 
 
-    if (expresion.test(target.value)) { // si me devuelve un true tal cosa un false tal otra
+    if (regex.test(target.value)) { // si me devuelve un true tal cosa un false tal otra
         input.style.border = "1px solid green"
         text.innerHTML = "";
         eye.style.display = 'block'
