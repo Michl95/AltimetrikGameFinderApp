@@ -1,5 +1,4 @@
-
-@mixin greenButton{
+@mixin greenButton {
     border-radius: 4px;
     height: 2.9rem;
     color: $white;
@@ -8,10 +7,9 @@
     font-size: 1.125rem;
     margin-top: 1.6rem;
     transition: .5s ease;
-
-    &:hover{
+    &:hover {
         background: $green-darker;
-    }  
+    }
 }
 
 @mixin transButton {
@@ -24,10 +22,10 @@
     background: transparent;
     border: 1px solid $white;
     transition: .5s ease;
-    &:hover{
+    &:hover {
         background: white;
-
-        a, i{
+        a,
+        i {
             color: black;
         }
     }
@@ -40,6 +38,25 @@
     cursor: pointer;
 }
 
-.icon{
+@mixin scrollBar {
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        background: $grey-lighter;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $grey-solid;
+        border-radius: 4px;
+        border: 1px solid $grey-text;
+    }
+    /* Firefox */
+    & {
+        scrollbar-width: auto;
+        scrollbar-color: $grey-solid $grey-lighter;
+    }
+}
+
+.icon {
     filter: invert(85%) sepia(14%) saturate(1530%) hue-rotate(86deg) brightness(94%) contrast(87%);
 }

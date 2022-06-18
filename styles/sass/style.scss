@@ -1,15 +1,13 @@
 @import "variables";
 @import "configs";
 @import "base";
-@import "carousel";
-@import "signUpForm";
-@import "header-login";
-@import "header";
-@import "bodyHeader";
-@import "aside-nav";
-@import "gamesContainer";
-@import "footer";
-
-
-
-
+@import "carousel_Login";
+@import "form_Login";
+@import "header_Login";
+@import "main-header_Home";
+@import "secondary-header_Home";
+@import "aside-nav_Home";
+@import "gamesContainer_Home";
+@import "footer_Home";
+@import "MQueries_Mobile";
+@import "MQueries_Mobile_Home";

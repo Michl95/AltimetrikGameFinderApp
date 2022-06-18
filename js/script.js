@@ -1,9 +1,8 @@
-
 const buttons = document.querySelectorAll('[data-carousel-button]');
 const carrouselNav = document.querySelectorAll('[data-selected-bar]');
 
 
-buttons.forEach(button =>{
+buttons.forEach(button => {
     button.addEventListener('click', () => {
         const offset = button.dataset.carouselButton === 'next' ? 1 : -1;
         const slides = button.closest("[data-carousel]").querySelector("[data-slides]");
@@ -12,7 +11,7 @@ buttons.forEach(button =>{
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
         if (newIndex < 0) newIndex = slides.children.length - 1
         if (newIndex >= slides.children.length) newIndex = 0
-        
+
         slides.children[newIndex].dataset.active = true
         delete activeSlide.dataset.active
     })
@@ -20,7 +19,7 @@ buttons.forEach(button =>{
 
 
 
-var slideIndex = 1;
+let slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
@@ -32,12 +31,11 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
     if (n > slides.length) { slideIndex = 1 }
     if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
@@ -46,7 +44,3 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
-
-
-
-
