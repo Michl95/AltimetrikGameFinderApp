@@ -13,9 +13,12 @@
         padding-left: 2.5rem;
         .logo--second-page {
             width: 16.875rem;
+            cursor: pointer;
         }
         span {
             position: relative;
+            display: flex;
+            align-items: center;
             margin-left: 14.3rem;
             input {
                 width: 22.625rem;
@@ -38,6 +41,7 @@
                 border-radius: 8px;
                 margin-left: .25rem;
                 width: 98%;
+                top: 3rem;
                 .game_search--item {
                     padding: .25rem;
                 }
@@ -45,8 +49,10 @@
         }
         .nav_top_user-profile {
             display: flex;
-            margin-left: 23.9rem;
+            width: 100%;
+            justify-content: flex-end;
             align-items: center;
+            margin-right: 2.5rem;
             .user-photo {
                 margin-left: .9rem;
                 width: 3rem;

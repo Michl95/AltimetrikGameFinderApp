@@ -300,16 +300,7 @@ main {
       .form_container .form_container_social-btns .btn-t .gl {
         margin-left: 1.8rem; }
 
-@media screen and (max-width: 1024px) {
-  .form_container {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    width: 25rem; } }
-
-header .logo {
+header .logo_Login {
   position: absolute;
   z-index: 1000;
   left: 3.6rem;
@@ -330,9 +321,12 @@ header .logo {
     width: 100%;
     padding-left: 2.5rem; }
     .header_second-page .nav_top .logo--second-page {
-      width: 16.875rem; }
+      width: 16.875rem;
+      cursor: pointer; }
     .header_second-page .nav_top span {
       position: relative;
+      display: flex;
+      align-items: center;
       margin-left: 14.3rem; }
       .header_second-page .nav_top span input {
         width: 22.625rem;
@@ -352,13 +346,16 @@ header .logo {
         display: none;
         border-radius: 8px;
         margin-left: .25rem;
-        width: 98%; }
+        width: 98%;
+        top: 3rem; }
         .header_second-page .nav_top span .game_search_suggestion .game_search--item {
           padding: .25rem; }
     .header_second-page .nav_top .nav_top_user-profile {
       display: flex;
-      margin-left: 23.9rem;
-      align-items: center; }
+      width: 100%;
+      justify-content: flex-end;
+      align-items: center;
+      margin-right: 2.5rem; }
       .header_second-page .nav_top .nav_top_user-profile .user-photo {
         margin-left: .9rem;
         width: 3rem;
@@ -440,7 +437,7 @@ header .logo {
 .game-card_container {
   margin: 0 2.5rem 0 16.4375rem;
   display: grid;
-  grid-template-columns: repeat(3, 22.6875rem);
+  grid-template-columns: repeat(auto-fill, 363px);
   gap: 1.5rem; }
   .game-card_container .game-card {
     width: 22.6875rem;
@@ -515,3 +512,75 @@ footer .linear-gradient {
   background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%);
   position: fixed;
   bottom: 0; }
+
+@media only screen and (min-width: 320px) and (max-width: 580px) {
+  .form_container {
+    height: 88vh;
+    width: 99vw;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto; }
+    .form_container form div {
+      margin-top: 1.6rem; }
+  header .logo_Login {
+    top: 0;
+    left: 0;
+    bottom: 57rem;
+    right: 0;
+    margin: auto; }
+  .prev,
+  .next,
+  .carousel_dots_container {
+    display: none; } }
+
+@media only screen and (min-width: 581px) and (max-width: 1024px) {
+  .form_container {
+    top: 0;
+    left: 0;
+    bottom: 4rem;
+    right: 0;
+    margin: auto;
+    height: 43.875rem; }
+  header .logo_Login {
+    top: 0;
+    left: 0;
+    bottom: 57rem;
+    right: 0;
+    margin: auto; }
+  .prev,
+  .next,
+  .carousel_dots_container {
+    display: none; } }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .prev,
+  .next,
+  .carousel_dots_container {
+    display: flex; } }
+
+@media only screen and (min-width: 480px) and (max-width: 1439px) {
+  .game-card_container {
+    grid-template-columns: repeat(auto-fill, 351px); } }
+
+@media only screen and (max-width: 1078px) {
+  .header_second-page .nav_top {
+    justify-content: center; }
+    .header_second-page .nav_top span {
+      margin-left: 7.15rem; }
+    .header_second-page .nav_top .nav_top_user-profile,
+    .header_second-page .nav_top .logo--second-page {
+      display: none; }
+  .aside_nav {
+    display: none; }
+  .game-card_container {
+    margin-left: 11rem; } }
+
+@media only screen and (min-width: 767px) and (max-width: 899px) {
+  .game-card_container {
+    margin: 0 0 0 1rem; } }
+
+@media only screen and (min-width: 900px) and (max-width: 1077px) {
+  .game-card_container {
+    margin: 0 0 0 4rem; } }
