@@ -1,0 +1,63 @@
+@media only screen and (min-width: 320px) and (max-width: 580px) {
+    .form_container {
+        height: 88vh;
+        width: 99vw;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        form {
+            div {
+                margin-top: 1.6rem;
+            }
+        }
+    }
+    header {
+        .logo_Login {
+            top: 0;
+            left: 0;
+            bottom: 57rem;
+            right: 0;
+            margin: auto;
+        }
+    }
+    .prev,
+    .next,
+    .carousel_dots_container {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 581px) and (max-width: 1024px) {
+    .form_container {
+        top: 0;
+        left: 0;
+        bottom: 4rem;
+        right: 0;
+        margin: auto;
+        height: 43.875rem;
+    }
+    header {
+        .logo_Login {
+            top: 0;
+            left: 0;
+            bottom: 57rem;
+            right: 0;
+            margin: auto;
+        }
+    }
+    .prev,
+    .next,
+    .carousel_dots_container {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .prev,
+    .next,
+    .carousel_dots_container {
+        display: flex;
+    }
+}

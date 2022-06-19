@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$T/.lIYrIJCNdYrsb/UpcMeM1l4WK24gH.KYAIMvzkNNAWyMqX8D0q",
+      "id": 1
+    },
+    {
+      "email": "michael.armesto@gmail.com",
+      "password": "$2a$10$D7UVTSnHZBwTVuol5W6ZXeK4MDi87S.t.oMmdnSiRyH2mgnHVdvVq",
+      "id": 2
+    },
+    {
+      "email": "michaelArmesto@gmail.com",
+      "password": "$2a$10$IJ.HiQ70juqL/05Cm/qYmed/vN.wCPm3XWV/rPh4BNH6wtRGiH1vS",
+      "id": 3
+    },
+    {
+      "email": "Armesto@mail.com",
+      "password": "$2a$10$sBab8pq07r7SUfkDQ52m5.XamVIQPwUosVEawQLCWiIrTSaZW3Eoe",
+      "id": 4
+    },
+    {
+      "email": "holapepe@gmail.com",
+      "password": "$2a$10$JUz.1A979enP/Zy2PaQ6Pe47jDw5.DZnOEcibN3poL29a5bcxUljK",
+      "id": 5
+    },
+    {
+      "email": "bfeda-test-2022@gmail.com",
+      "password": "$2a$10$KMF6145X5X6JBQF6IIh/dO0v0JQZqrMeYuLOrGNDQg1FOlkIuunuu",
+      "id": 6
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+.main_second-page {
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.1875rem 2.5rem 1.4rem 2.5rem;
+        position: sticky;
+        top: 5.875rem;
+        z-index: 999998;
+        background: $bg;
+        .header_title {
+            h1 {
+                font-size: 3rem;
+                color: $white;
+                font-weight: 800;
+            }
+            p {
+                font-size: 1.125rem;
+                margin-top: .1rem;
+                font-weight: 400;
+            }
+        }
+        .thumbnail_view {
+            margin-right: 1.5rem;
+            cursor: pointer;
+        }
+        .option_switch {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.75rem;
+            cursor: pointer;
+            p {
+                margin-right: 1rem;
+                font-size: .9375rem;
+                font-weight: 400;
+            }
+        }
+        .option_view {
+            display: flex;
+            justify-content: end;
+            cursor: pointer;
+        }
+        .option_container {
+            margin-top: .7rem;
+        }
+    }
+}
