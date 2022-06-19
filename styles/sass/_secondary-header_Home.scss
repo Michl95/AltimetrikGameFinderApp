@@ -21,11 +21,13 @@
         }
         .thumbnail_view {
             margin-right: 1.5rem;
+            cursor: pointer;
         }
         .option_switch {
             display: flex;
             align-items: center;
             margin-bottom: 1.75rem;
+            cursor: pointer;
             p {
                 margin-right: 1rem;
                 font-size: .9375rem;
@@ -35,6 +37,7 @@
         .option_view {
             display: flex;
             justify-content: end;
+            cursor: pointer;
         }
         .option_container {
             margin-top: .7rem;

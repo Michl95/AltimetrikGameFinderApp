@@ -1,34 +1,42 @@
-let games = ''; // by assigning a global scope to this variable I keep the previous games loaded while new games are being loaded
+let games = '';
 let page = 1;
-let lastGameOneScreen; // by default when we load for the first time we are not going to have 
+let lastGameOneScreen;
 let searchBtn = document.getElementById('searchbar');
 let counter = 1;
 
 const searchSuggestion = document.getElementById('game_search_suggestion');
+const logOut = document.querySelector('.logOut');
 
 
 
 const urlKey = 'https://api.rawg.io/api/games?key=0287d94a76d24548a822e6b8ce6351c8';
+const header = {
+    method: "GET",
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+    }
+}
 
 
 function loadCards() {
     console.log('loaded');
-    loadGames(urlKey);
+    loadGames();
 }
 
-// observer
-// I want it to be a new instance - I need to pass two things, the function I want to be executed when we are making use of our observer - When I reach the last game I want to execute a function that loads new games
+
+
 let observer = new IntersectionObserver((entrys) => {
-    // we access to entrys through a forEach
+
     entrys.forEach(entry => {
-        // I`ll check if our target which is our last game has a particual property - means that is on screen - watch for all of our games and forEach one ask if it has a certin property
+
         if (entry.isIntersecting) {
             page++;
             loadGames();
         }
     });
 }, {
-    // Observer options - added marginBottom to give time to do the request for better fluency
+
     rootMargin: '0px 0px 400px 0px',
     threshold: 1.0
 });
@@ -53,13 +61,13 @@ const gamePlatforms = (platforms) => {
     let allPlatforms = '';
     platforms.map((platforms) => {
         switch (platforms.platform.id) {
-            case 1:
+            case (1):
                 allPlatforms += windows;
                 break;
-            case 2:
+            case (2):
                 allPlatforms += play;
                 break;
-            case 3:
+            case (3):
                 allPlatforms += xbox;
                 break;
         }
@@ -76,16 +84,9 @@ const convertDate = (releasedDate) => {
 }
 
 
-const loadGames = async() => { // connects to our API, loads the games and put it in out container
+const loadGames = async(shortResult) => {
     try {
-        const response = await fetch(`${urlKey}&page=${page}`, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            }
-        }); // fetch return a promise and we store it in our variable, a promise means that we are making a request but we have to wait until it finished before doing something with it
-        // if our response is OK
+        const response = await fetch(`${urlKey}&page=${page}`, header);
         if (response.status === 200) {
             const res = await response.json();
             console.log(res.results);
@@ -94,7 +95,7 @@ const loadGames = async() => { // connects to our API, loads the games and put i
                 for (let i = 0; i < genres.length; i++) {
                     genreName += `${genres[i].name}, `;
                 }
-                games += `<div class="game-card">
+                games += `<button class="game-card">
                 <div class="game-card_img_container">
                     <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
@@ -118,24 +119,24 @@ const loadGames = async() => { // connects to our API, loads the games and put i
                         <p class="text_card-400">${genreName}</p>
                     </div>
                 </div>
-            </div>`;
+            </button>`;
                 counter = counter + 1;
             });
             document.getElementById('game-card_container').innerHTML = games;
-            // when our site reaches the last page we are going to stop runing this code otherwise our page will break into super tiny small pieces
+
             if (page < 37397) {
 
-                // if I have already a game stored in that variable being observed I want it to stop observing it - Don't be a creep.
+
                 if (lastGameOneScreen) {
                     observer.unobserve(lastGameOneScreen);
                 }
-                // and then I execute this code to observe my new last game
+
                 const gamesOnScreen = document.querySelectorAll('.game-card_container .game-card');
 
-                // getting the last game I have on screen and store it
+
                 lastGameOneScreen = gamesOnScreen[gamesOnScreen.length - 1];
 
-                // when our variable enters in our screen i want or observer to execute our code
+
                 observer.observe(lastGameOneScreen)
             }
 
@@ -147,13 +148,12 @@ const loadGames = async() => { // connects to our API, loads the games and put i
             console.log('Something went wrong');
         }
 
-    } catch (error) { // this has nothing to do with our request. in case there is an error it will show us in details
+    } catch (error) {
         console.log(error);
     }
 }
 
-// whne working with asyn function is  good to work with try and catch.
-loadGames()
+loadCards()
 
 
 // -------------------------- Search ------------------------------------
@@ -164,61 +164,48 @@ loadGames()
 
 
 searchBtn.addEventListener('keypress', (e) => {
-
     const searchValue = searchBtn.value.trim();
-
     if (searchValue.length >= 3 || e.keycode === 13) {
-        console.log('busqueda iniciada');
-        searchSuggestion.style.display = 'block'
-
+        // searchSuggestion.style.display = 'block'
         document.getElementById('game-card_container').innerHTML = games;
         games = '';
-
         const searchReq = async() => {
             try {
-                const resp = await fetch(`${urlKey}&search=${searchValue}`, {
-                    method: "GET",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    }
-                });
+                const resp = await fetch(`${urlKey}&search=${searchValue}`, header);
                 if (resp.status === 200) {
                     const res = await resp.json();
                     const result = res.results;
-                    console.log(res.results);
                     const shortResult = result.slice(0, 4);
-                    console.log(shortResult);
                     shortResult.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [] }) => {
                         let genreName = '';
                         for (let i = 0; i < genres.length; i++) {
                             genreName += `${genres[i].name}, `;
                         }
-                        games += `<div class="game-card">
-                            <div class="game-card_img_container">
-                                <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
-                                </svg>
-                                <img class="game-card--img" src="${bgImg}" alt="">
-                            </div>
-                            <div class="game-card_info--container">
-                                <div class="game-card_title-container">
-                                    <h5 class="game-card--title text-title">${gameTitle}</h5>
-                                    <span class="game-card--number number">#${counter}</span>
+                        games += `<button class="game-card">
+                                <div class="game-card_img_container">
+                                    <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
+                                    </svg>
+                                    <img class="game-card--img" src="${bgImg}" alt="">
                                 </div>
-                                <div class="game-card_releaseDate-container">
-                                    <p class="text_card-500 realease">Release date:</p>
-                                    <p class="text_card-400 date">${convertDate(releasedDate)}</p>
-                                    <span class="game-card_icon--container">
-                                    ${gamePlatforms(platforms)}
-                                    </span>
+                                <div class="game-card_info--container">
+                                    <div class="game-card_title-container">
+                                        <h5 class="game-card--title text-title">${gameTitle}</h5>
+                                        <span class="game-card--number number">#${counter}</span>
+                                    </div>
+                                    <div class="game-card_releaseDate-container">
+                                        <p class="text_card-500 realease">Release date:</p>
+                                        <p class="text_card-400 date">${convertDate(releasedDate)}</p>
+                                        <span class="game-card_icon--container">
+                                        ${gamePlatforms(platforms)}
+                                        </span>
+                                    </div>
+                                    <div class="game-card_genre--container">
+                                        <p class="text_card-500 genre">Genres</p>
+                                        <p class="text_card-400">${genreName}</p>
+                                    </div>
                                 </div>
-                                <div class="game-card_genre--container">
-                                    <p class="text_card-500 genre">Genres</p>
-                                    <p class="text_card-400">${genreName}</p>
-                                </div>
-                            </div>
-                        </div>`;
+                            </button>`;
                         counter = counter + 1;
                     });
                 }
@@ -227,9 +214,14 @@ searchBtn.addEventListener('keypress', (e) => {
             }
         }
         searchReq();
-    } else {
-        searchBtn.ddEventListener('blur', () => {
-            searchSuggestion.style.display = 'none'
-        })
     }
+})
+
+// searchBtn.addEventListener('blur', (e) => {
+//     searchSuggestion.style.display = 'none'
+// })
+
+logOut.addEventListener('click', () => {
+    window.location.href = '../index.html';
+
 })
