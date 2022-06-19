@@ -53,6 +53,12 @@
             .form_pass_eye--error {
                 display: none;
             }
+            .red {
+                fill: $red;
+            }
+            .green {
+                fill: $green-nmb;
+            }
         }
         input {
             width: 100%;
@@ -61,10 +67,10 @@
             padding-left: 1rem;
         }
         .errorMsg {
-            color: red;
+            color: $red;
         }
         .validMsg {
-            color: green;
+            color: $green-nmb;
         }
         div {
             display: flex;

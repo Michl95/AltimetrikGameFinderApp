@@ -60,6 +60,12 @@
                 border-radius: 50%;
                 border: 2px solid $white;
             }
+            .logOut {
+                background: none;
+                border: none;
+                color: $white;
+                cursor: pointer;
+            }
         }
     }
 }
