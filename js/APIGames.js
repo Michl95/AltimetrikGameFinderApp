@@ -3,9 +3,8 @@ let page = 1;
 let lastGameOneScreen;
 let searchBtn = document.getElementById('searchbar');
 let counter = 1;
-
-const searchSuggestion = document.getElementById('game_search_suggestion');
 const logOut = document.querySelector('.logOut');
+const suggestedList = document.getElementById('game_search_suggestion');
 
 
 
@@ -17,13 +16,6 @@ const header = {
         "Content-Type": "application/json",
     }
 }
-
-
-function loadCards() {
-    console.log('loaded');
-    loadGames();
-}
-
 
 
 let observer = new IntersectionObserver((entrys) => {
@@ -82,20 +74,18 @@ const convertDate = (releasedDate) => {
         day: 'numeric'
     })
 }
-
-
-const loadGames = async(shortResult) => {
+const loadGames = async() => {
     try {
         const response = await fetch(`${urlKey}&page=${page}`, header);
         if (response.status === 200) {
             const res = await response.json();
-            console.log(res.results);
             res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [] }) => {
                 let genreName = '';
                 for (let i = 0; i < genres.length; i++) {
                     genreName += `${genres[i].name}, `;
                 }
-                games += `<button class="game-card">
+
+                games += `<button class="game-card" onclick="modalRender()">
                 <div class="game-card_img_container">
                     <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
@@ -153,75 +143,327 @@ const loadGames = async(shortResult) => {
     }
 }
 
-loadCards()
+const changeCardClass = () => {
+
+}
+
+loadGames();
 
 
-// -------------------------- Search ------------------------------------
 
-// searchBtn.addEventListener('keyup', () => {
-//     searchSuggestion.style.display = 'block'
-// })
+searchBtn.addEventListener('blur', (e) => {
+    suggestedList.style.display = 'none'
+})
+logOut.addEventListener('click', () => {
+    window.location.href = '../index.html';
+})
+
+
+
+//---------------------------------------------------
+
+const searchReq = async(searchValue) => {
+    document.getElementById('game-card_container').innerHTML = games;
+    games = '';
+    try {
+        const resp = await fetch(`${urlKey}&search=${searchValue}`, header);
+        if (resp.status === 200) {
+            const res = await resp.json();
+            const result = res.results;
+            const shortResult = result.slice(0, 4);
+            shortResult.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [] }) => {
+                let genreName = '';
+                for (let i = 0; i < genres.length; i++) {
+                    genreName += `${genres[i].name}, `;
+                }
+                games += `<button class="game-card" onclick="modalRender()">
+                        <div class="game-card_img_container">
+                            <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
+                            </svg>
+                            <img class="game-card--img" src="${bgImg}" alt="">
+                        </div>
+                        <div class="game-card_info--container">
+                            <div class="game-card_title-container">
+                                <h5 class="game-card--title text-title">${gameTitle}</h5>
+                                <span class="game-card--number number">#${counter}</span>
+                            </div>
+                            <div class="game-card_releaseDate-container">
+                                <p class="text_card-500 realease">Release date:</p>
+                                <p class="text_card-400 date">${convertDate(releasedDate)}</p>
+                                <span class="game-card_icon--container">
+                                ${gamePlatforms(platforms)}
+                                </span>
+                            </div>
+                            <div class="game-card_genre--container">
+                                <p class="text_card-500 genre">Genres</p>
+                                <p class="text_card-400">${genreName}</p>
+                            </div>
+                        </div>
+                    </button>`;
+                counter = counter + 1;
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// -------------------------------
+
+const fetchSuggestions = async function(searchValue) {
+    try {
+        suggestedList.innerHTML = '<li class="header__suggestion-block-text">Loading...</li>'
+        let response = await fetch(
+            `https://api.rawg.io/api/games?key=a5ec9a0abd70401288b5e273d53daea9&search=${searchValue}`
+        );
+        let games = await response.json();
+        if (games.results.length > 0) {
+            let suggestions = []
+
+            // Filter game results by starting query
+            games.results.forEach((result) => {
+                //only results matching starting with the search query
+                if (result.name.toLowerCase().startsWith(searchValue.toLowerCase())) {
+                    suggestions.push(result)
+                }
+            })
+
+            // only return first 3 suggestions
+            if (suggestions.length > 0) {
+                suggestions = suggestions.slice(0, 4)
+                const suggestionsHtml = suggestions.map((suggestion) => `<li class="header__suggestion-block-text" onclick="search('${suggestion.name}')">${suggestion.name}</li>`).join('')
+                suggestedList.innerHTML = suggestionsHtml
+            }
+        } else {
+            suggestedList.innerHTML = '<li class="header__suggestion-block-text">No games were found</li>'
+
+        }
+    } catch (error) {
+        suggestedList.innerHTML = '<li class="header__suggestion-block-text">Cant load suggestions</li>'
+    }
+}
+
+
+// function debounce(cb, interval, immediate) {
+//     let timeout;
+
+//     return function() {
+//         let context = this,
+//             args = arguments;
+//         const later = function() {
+//             timeout = null;
+//             if (!immediate) cb.apply(context, args);
+//         };
+
+//         let callNow = immediate && !timeout;
+
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, interval);
+
+//         if (callNow) cb.apply(context, args);
+
+//         console.log('sugeridos')
+//     };
+// };
+
+function dbonce(callback, delay) {
+    let timeOut;
+    return (...args) => {
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
+            cb(...args)
+        }, delay)
+        console.log('sugerido')
+    }
+
+}
+
+//suggest dbonce
+searchBtn.addEventListener("keyup", function(e) {
+
+    if (e.target.value.length > 2) {
+        dbonce(fetchSuggestions(searchBtn.value), 200)
+        console.log('sugeridos2')
+    }
+    if (e.target.value.length = 0) {}
+
+});
 
 
 searchBtn.addEventListener('keypress', (e) => {
     const searchValue = searchBtn.value.trim();
-    if (searchValue.length >= 3 || e.keycode === 13) {
-        // searchSuggestion.style.display = 'block'
-        document.getElementById('game-card_container').innerHTML = games;
-        games = '';
-        const searchReq = async() => {
-            try {
-                const resp = await fetch(`${urlKey}&search=${searchValue}`, header);
-                if (resp.status === 200) {
-                    const res = await resp.json();
-                    const result = res.results;
-                    const shortResult = result.slice(0, 4);
-                    shortResult.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [] }) => {
-                        let genreName = '';
-                        for (let i = 0; i < genres.length; i++) {
-                            genreName += `${genres[i].name}, `;
-                        }
-                        games += `<button class="game-card">
-                                <div class="game-card_img_container">
-                                    <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
-                                    </svg>
-                                    <img class="game-card--img" src="${bgImg}" alt="">
-                                </div>
-                                <div class="game-card_info--container">
-                                    <div class="game-card_title-container">
-                                        <h5 class="game-card--title text-title">${gameTitle}</h5>
-                                        <span class="game-card--number number">#${counter}</span>
-                                    </div>
-                                    <div class="game-card_releaseDate-container">
-                                        <p class="text_card-500 realease">Release date:</p>
-                                        <p class="text_card-400 date">${convertDate(releasedDate)}</p>
-                                        <span class="game-card_icon--container">
-                                        ${gamePlatforms(platforms)}
-                                        </span>
-                                    </div>
-                                    <div class="game-card_genre--container">
-                                        <p class="text_card-500 genre">Genres</p>
-                                        <p class="text_card-400">${genreName}</p>
-                                    </div>
-                                </div>
-                            </button>`;
-                        counter = counter + 1;
-                    });
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        searchReq();
+    if (searchValue.length > 2) {
+        searchReq(searchValue);
+        console.log('cargando juegos');
     }
 })
 
-// searchBtn.addEventListener('blur', (e) => {
-//     searchSuggestion.style.display = 'none'
+
+
+
+
+
+
+
+/// mobile nav
+
+
+let navToggle = document.querySelector('nav_top_mobile--hamburguer');
+const navMbile = document.querySelector('.nav_mobile');
+
+function navMobile() {
+    navMbile.classList.remove('hidden')
+    navMbile.classList.add('active')
+}
+let cross = document.querySelector('cross');
+
+function navMobileClose() {
+    navMbile.classList.remove('active')
+    navMbile.classList.add('hidden')
+}
+
+
+//-----------Light mode ----------------//
+
+let body = document.querySelector('.second-page');
+let switchOn = document.getElementById('switchOn');
+let switchOff = document.getElementById('switchOff');
+let headerHome = document.querySelector('.main_second-page_header');
+let trending = document.getElementById('newAndTrending');
+let trendingP = document.getElementById('trendingPrgh');
+let navLinks = document.querySelector('.aside_nav');
+let links = navLinks.querySelectorAll('.aside_nav--main--link');
+let gradient = document.querySelector('footer .linear-gradient');
+let darkModeP = document.getElementById('darkMode');
+
+let cardContainer = document.getElementById('game-card_container');
+
+let cardBg = cardContainer.children;
+console.log(cardBg);
+
+
+let cardTitle = document.querySelectorAll('.text-title');
+
+
+
+
+
+
+
+
+// switchOn.addEventListener('click', () => {
+//     switchOn.style.display = 'none';
+//     switchOff.style.display = 'block';
+//     body.classList.add('light');
+//     headerHome.classList.add('light');
+//     cardBackground.classList.add('light');
+
 // })
 
-logOut.addEventListener('click', () => {
-    window.location.href = '../index.html';
+// switchOff.addEventListener('click', () => {
+//     switchOn.style.display = 'block';
+//     switchOff.style.display = 'none';
+//     body.classList.remove('light');
+//     headerHome.classList.remove('light')
+// })
 
+
+let lightMode = localStorage.getItem('lightMode')
+
+
+
+
+
+const lightModeOn = () => {
+    document.body.classList.add('lightMode')
+    localStorage.setItem('lightMode', 'enabled')
+    headerHome.classList.add('light');
+    trending.classList.add('light');
+    trendingP.classList.add('light');
+    for (const link of links) {
+        link.classList.add('light');
+
+    }
+    gradient.classList.add('light');
+    switchOn.style.display = 'none'
+    switchOff.style.display = 'block'
+    darkModeP.style.color = '#000'
+    for (const card of cardBg) {
+        card.classList.add('light');
+    }
+
+
+
+
+
+
+}
+const lightModeOff = () => {
+    document.body.classList.remove('lightMode')
+    localStorage.setItem('lightMode', 'disabled')
+    body.classList.remove('light');
+    headerHome.classList.remove('light');
+    trending.classList.remove('light');
+    trendingP.classList.remove('light');
+    for (const link of links) {
+        link.classList.remove('light');
+
+    }
+    gradient.classList.remove('light');
+    switchOn.style.display = 'block'
+    switchOff.style.display = 'none'
+    darkModeP.style.color = '#fff'
+    for (const card of cardBg) {
+        card.classList.remove('light');
+    }
+}
+
+if (lightMode === 'enabled') {
+    lightModeOn();
+
+}
+
+switchOn.addEventListener('click', () => {
+    lightMode = localStorage.getItem('lightMode')
+    if (lightMode !== "enabled") {
+        lightModeOn();
+        console.log('On')
+    } else {
+        lightModeOff();
+        console.log('Off')
+    }
 })
+switchOff.addEventListener('click', () => {
+    lightMode = localStorage.getItem('lightMode')
+    if (lightMode !== "enabled") {
+        lightModeOn();
+        console.log('On')
+    } else {
+        lightModeOff();
+        console.log('Off')
+    }
+})
+
+
+
+// MODAL
+
+const modalCross = document.querySelector('.modal-cross-btn');
+const modalContainer = document.getElementById('modal-container');
+const modal = document.querySelector('.modal');
+
+
+function modalRender() {
+    modalContainer.innerHTML += `<div class="modal">
+    <button class="modal-cross-btn" onclick="closeModal()">
+        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.585573 1.58644C0.960629 1.21148 1.46924 1.00083 1.99957 1.00083C2.5299 1.00083 3.03852 1.21148 3.41357 1.58644L13.9996 12.1729L24.5856 1.58644C24.7701 1.39541 24.9908 1.24303 25.2348 1.13821C25.4788 1.03339 25.7412 0.978213 26.0068 0.975906C26.2723 0.973598 26.5357 1.0242 26.7815 1.12477C27.0273 1.22534 27.2506 1.37385 27.4384 1.56164C27.6261 1.74944 27.7747 1.97275 27.8752 2.21856C27.9758 2.46436 28.0264 2.72774 28.0241 2.99331C28.0218 3.25888 27.9666 3.52133 27.8618 3.76535C27.757 4.00937 27.6046 4.23007 27.4136 4.41457L16.8276 15.0011L27.4136 25.5876C27.7779 25.9648 27.9795 26.47 27.9749 26.9945C27.9704 27.5189 27.76 28.0205 27.3892 28.3914C27.0184 28.7622 26.5168 28.9726 25.9924 28.9771C25.468 28.9817 24.9628 28.7801 24.5856 28.4157L13.9996 17.8292L3.41357 28.4157C3.03637 28.7801 2.53116 28.9817 2.00677 28.9771C1.48238 28.9726 0.980752 28.7622 0.609936 28.3914C0.23912 28.0205 0.0287811 27.5189 0.0242243 26.9945C0.0196674 26.47 0.221257 25.9648 0.585573 25.5876L11.1716 15.0011L0.585573 4.41457C0.210631 4.0395 0 3.53086 0 3.0005C0 2.47015 0.210631 1.96151 0.585573 1.58644Z" fill="white"/>
+            </svg> 
+    </button>
+</div>`
+}
+
+function closeModal() {
+    modalContainer.innerHTML = ''
+}

@@ -9,11 +9,14 @@
         margin-top: 1.3rem;
         li {
             margin-top: .9rem;
-        }
-        a {
-            color: $white;
-            &:hover {
-                color: $green-nmb;
+            a {
+                color: $white;
+                &:hover {
+                    color: $green-nmb;
+                }
+            }
+            .light {
+                color: #000;
             }
         }
     }
@@ -24,12 +27,15 @@
             margin-top: 1.1rem;
             display: flex;
             align-items: center;
-        }
-        a {
-            color: $white;
-            margin-left: .79rem;
-            &:hover {
-                color: $green-nmb;
+            a {
+                color: $white;
+                margin-left: .79rem;
+                &:hover {
+                    color: $green-nmb;
+                }
+            }
+            .light {
+                color: #000;
             }
         }
     }
@@ -52,6 +58,9 @@
                 &:hover {
                     color: $green-nmb;
                 }
+            }
+            .light {
+                color: #000;
             }
         }
     }

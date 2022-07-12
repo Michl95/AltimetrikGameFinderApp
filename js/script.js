@@ -23,3 +23,13 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+
+const navToggle = document.querySelector('nav_top_mobile--hamburguer');
+const navMobile = document.querySelector('.nav_mobile');
+
+navToggle.addEventListener('click', () => {
+    navMobile.classList.remove('hidden');
+    navMobile.classList.add('active');
+
+})

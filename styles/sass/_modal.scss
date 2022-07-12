@@ -1,0 +1,35 @@
+.modal-container {
+    width: 67.25rem;
+    height: 49.56rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 1.5rem;
+    z-index: 1000000;
+    display: block;
+    background: #303030;
+    .modal {
+        background-image: url("https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+        width: 100%;
+        height: 100%;
+        border-radius: 1.5rem;
+        .modal--gradient {
+            background: linear-gradient(180deg, rgba(48, 48, 48, 0.0001) 0%, #303030 65%);
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .modal-cross-btn {
+                position: absolute;
+                right: 2rem;
+                top: 2rem;
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}

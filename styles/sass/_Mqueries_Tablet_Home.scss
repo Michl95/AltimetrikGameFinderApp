@@ -1,0 +1,27 @@
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .header_second-page {
+        .nav_top {
+            .logo--second-page {
+                display: none;
+            }
+            .nav_top_user-profile {
+                display: none;
+            }
+            .nav_top_mobile--container {
+                .nav_top_mobile--hamburguer {
+                    display: block;
+                }
+            }
+            span {
+                margin-left: 11.3rem;
+            }
+        }
+    }
+    .aside_nav {
+        display: none;
+    }
+    .game-card_container {
+        margin: auto;
+        justify-content: center;
+    }
+}

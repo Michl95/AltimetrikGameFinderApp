@@ -18,10 +18,6 @@ body {
     position: relative; // my login form was moving outside the body when the screen was bigger than 1400x1024. added a relative to the parent. fixed.
 }
 
-p {
-    color: $white;
-}
-
 main {
     width: 100%;
     height: 100%;
@@ -29,6 +25,10 @@ main {
 
 .second-page {
     background: $bg;
+}
+
+.lightMode {
+    background: $bg-light;
 }
 
 .text-m {
@@ -40,7 +40,6 @@ main {
 .text-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $white;
 }
 
 .text_card-500 {
@@ -52,7 +51,6 @@ main {
 .text_card-400 {
     font-weight: 400;
     font-size: .875rem;
-    color: $white;
 }
 
 .number {
@@ -60,4 +58,12 @@ main {
     color: $green-nmb;
     font-size: 1.125rem;
     margin-top: .2rem;
+}
+
+.light {
+    color: #000;
+}
+
+.dark {
+    color: #fff;
 }

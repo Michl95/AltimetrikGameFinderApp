@@ -104,3 +104,16 @@ async function apiCall() {
 
     }
 }
+
+
+function showHide() {
+    if (password.type === 'password') {
+        password.setAttribute('type', 'text');
+        eyePass.style.display = 'none'
+        eyePassVisible.style.display = 'block'
+    } else {
+        password.setAttribute('type', 'password');
+        eyePass.style.display = 'block'
+        eyePassVisible.style.display = 'none'
+    }
+}

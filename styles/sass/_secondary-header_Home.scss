@@ -19,6 +19,9 @@
                 font-weight: 400;
             }
         }
+        .light {
+            color: #000 !important;
+        }
         .thumbnail_view {
             margin-right: 1.5rem;
             cursor: pointer;
@@ -33,6 +36,9 @@
                 font-size: .9375rem;
                 font-weight: 400;
             }
+            #switchOff {
+                display: none;
+            }
         }
         .option_view {
             display: flex;
@@ -42,5 +48,8 @@
         .option_container {
             margin-top: .7rem;
         }
+    }
+    .light {
+        background: $bg-light;
     }
 }
