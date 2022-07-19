@@ -7,10 +7,10 @@
         top: 5.875rem;
         z-index: 999998;
         background: $bg;
+        color: $white;
         .header_title {
             h1 {
                 font-size: 3rem;
-                color: $white;
                 font-weight: 800;
             }
             p {
@@ -20,7 +20,7 @@
             }
         }
         .light {
-            color: #000 !important;
+            color: #000;
         }
         .thumbnail_view {
             margin-right: 1.5rem;

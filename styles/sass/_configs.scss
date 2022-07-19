@@ -31,6 +31,24 @@
     }
 }
 
+@mixin emptyButton ($width, $color, $mTop, $background, $border) {
+    border-radius: 4px;
+    height: 2.9rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    width: $width;
+    color: $color;
+    margin-top: $mTop;
+    background: $background;
+    border: $border;
+    transition: .5s ease;
+    &:hover{
+        opacity: .4;
+    }
+
+}
+
+
 @mixin carrouselArrow {
     position: absolute;
     top: 49.5%;
