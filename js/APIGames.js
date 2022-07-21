@@ -80,7 +80,6 @@ const loadGames = async() => {
         const response = await fetch(`${urlKey}&page=${page}`, header);
         if (response.status === 200) {
             const res = await response.json();
-            
             res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [], id: gameId, short_screenshots: gamePics}) => {
                 let genreName = '';
                 
@@ -301,6 +300,10 @@ function navMobileClose() {
 
 
 //-----------Light mode ----------------//
+const modalCross = document.querySelector('.modal-cross-btn');
+const modalContainer = document.getElementById('modal-container');
+const modal = document.querySelector('.modal');
+const modalGradient = document.querySelectorAll('.modal--gradient');
 
 let body = document.querySelector('.second-page');
 let switchOn = document.getElementById('switchOn');
@@ -338,6 +341,7 @@ const lightModeOn = () => {
     for (const card of cardBg) {
         card.classList.add('light');
     }
+    modalContainer.classList.add('light');
 }
 
 
@@ -359,6 +363,7 @@ const lightModeOff = () => {
     for (const card of cardBg) {
         card.classList.remove('light');
     }
+    modalContainer.classList.remove('light'); 
 }
 
 if (lightMode === 'enabled') {
@@ -391,9 +396,6 @@ switchOff.addEventListener('click', () => {
 
 // MODAL
 
-const modalCross = document.querySelector('.modal-cross-btn');
-const modalContainer = document.getElementById('modal-container');
-const modal = document.querySelector('.modal');
 
 function getGameId(){
     let gameCard  = document.querySelectorAll('.game-card');
@@ -544,10 +546,14 @@ const loadModal=  async(id) => {
                     </div>
                 </div>
             </div>`
-
+            
             let modalBakcground = document.querySelector('.modal-container .modal');
             modalBakcground.style.backgroundImage = `url(${background_image})`;
-            modalBakcground.style.backgroundSize = 'contain'
+            modalBakcground.style.backgroundSize = 'contain';
+            modalBakcground.style.backgroundRepeat = 'no-repeat';
+            
+
+            
         }  
           
     }

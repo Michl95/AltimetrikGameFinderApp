@@ -697,20 +697,20 @@ main {
   bottom: 0;
   margin: auto;
   border-radius: 1.5rem;
-  z-index: 1000000;
   display: block;
-  background: #303030;
-  color: #ffff; }
+  color: #ffff;
+  z-index: 1000000;
+  background: #303030; }
   .modal-container .modal {
     width: 100%;
     height: 100%;
     border-radius: 1.5rem;
     background-size: cover; }
     .modal-container .modal .modal--gradient {
-      background: linear-gradient(180deg, rgba(48, 48, 48, 0.0001) 0%, #303030 65%);
       width: 100%;
       height: 100%;
-      border-radius: 1.5rem; }
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, rgba(48, 48, 48, 0.0001) 0%, #303030 65%); }
       .modal-container .modal .modal--gradient .modal_wrapper {
         display: flex;
         width: 100%;
@@ -820,6 +820,11 @@ main {
           height: 6.5rem;
           margin: .5rem;
           object-fit: cover; }
+
+.light {
+  background: #ffff;
+  color: #000;
+  background: #F0F0F0; }
 
 .hidden {
   display: none; }
