@@ -5,6 +5,8 @@ let searchBtn = document.getElementById('searchbar');
 let counter = 1;
 const logOut = document.querySelector('.logOut');
 const suggestedList = document.getElementById('game_search_suggestion');
+let modalBg;
+let modalGradient;
 
 
 
@@ -80,9 +82,9 @@ const loadGames = async() => {
         const response = await fetch(`${urlKey}&page=${page}`, header);
         if (response.status === 200) {
             const res = await response.json();
-            res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [], id: gameId, short_screenshots: gamePics}) => {
+            res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [], id: gameId, short_screenshots: gamePics }) => {
                 let genreName = '';
-                
+
                 for (let i = 0; i < genres.length; i++) {
                     genreName += `${genres[i].name}, `;
                 }
@@ -144,6 +146,7 @@ const loadGames = async() => {
         console.log(error);
     }
     getGameId();
+    handleLightCards();
 }
 loadGames();
 
@@ -300,10 +303,10 @@ function navMobileClose() {
 
 
 //-----------Light mode ----------------//
-const modalCross = document.querySelector('.modal-cross-btn');
-const modalContainer = document.getElementById('modal-container');
-const modal = document.querySelector('.modal');
-const modalGradient = document.querySelectorAll('.modal--gradient');
+let modalContainer = document.getElementById('modal-container');
+let modal = document.querySelector('.modal-container .modal')
+let spinner = document.querySelector('.modal-container .spinner--modal');
+
 
 let body = document.querySelector('.second-page');
 let switchOn = document.getElementById('switchOn');
@@ -315,14 +318,19 @@ let navLinks = document.querySelector('.aside_nav');
 let links = navLinks.querySelectorAll('.aside_nav--main--link');
 let gradient = document.querySelector('footer .linear-gradient');
 let darkModeP = document.getElementById('darkMode');
-
 let cardContainer = document.getElementById('game-card_container');
-let gameCardId;
-
 let cardBg = cardContainer.children;
-
 let cardTitle = document.querySelectorAll('.text-title');
+
 let lightMode = localStorage.getItem('lightMode')
+
+function handleLightCards() {
+    if (body.classList.contains('lightMode')) {
+        for (const card of cardBg) {
+            card.classList.add('light');
+        }
+    }
+}
 
 const lightModeOn = () => {
     document.body.classList.add('lightMode')
@@ -332,7 +340,6 @@ const lightModeOn = () => {
     trendingP.classList.add('light');
     for (const link of links) {
         link.classList.add('light');
-
     }
     gradient.classList.add('light');
     switchOn.style.display = 'none'
@@ -341,7 +348,8 @@ const lightModeOn = () => {
     for (const card of cardBg) {
         card.classList.add('light');
     }
-    modalContainer.classList.add('light');
+    modalContainer.classList.add('lightModal');
+    modal.classList.add('light');
 }
 
 
@@ -363,7 +371,8 @@ const lightModeOff = () => {
     for (const card of cardBg) {
         card.classList.remove('light');
     }
-    modalContainer.classList.remove('light'); 
+    modalContainer.classList.remove('lightModal');
+    modal.classList.remove('light');
 }
 
 if (lightMode === 'enabled') {
@@ -397,32 +406,42 @@ switchOff.addEventListener('click', () => {
 // MODAL
 
 
-function getGameId(){
-    let gameCard  = document.querySelectorAll('.game-card');
+function getGameId() {
+    let gameCard = document.querySelectorAll('.game-card');
     gameCard.forEach(card => {
-        card.addEventListener('click', () =>{
+        card.addEventListener('click', () => {
             let gameN = card.getAttribute('id');
             loadModal(gameN);
         })
     })
 }
 
+function displaySpinner() {
+    spinner.classList.remove('hidden');
+}
+
+function hideSpinner() {
+    spinner.classList.add('hidden');
+}
+
 function modalRender() {
+    displaySpinner();
+    modal.classList.remove("hidden");
     modalContainer.classList.remove("hidden");
     getGameId();
 }
 
-const loadModal=  async(id) => {
+const loadModal = async(id) => {
 
     try {
         const response = await fetch(`https://api.rawg.io/api/games/${id}?key=0287d94a76d24548a822e6b8ce6351c8`, header);
-        const gameShots = await fetch (`https://api.rawg.io/api/games/${id}/screenshots?key=0287d94a76d24548a822e6b8ce6351c8`, header);
-        
+        const gameShots = await fetch(`https://api.rawg.io/api/games/${id}/screenshots?key=0287d94a76d24548a822e6b8ce6351c8`, header);
+
         if (response.status, gameShots.status === 200) {
             const res = await response.json();
             const pics = await gameShots.json();
             const gamePics = pics.results;
-            const {name, description_raw, genres, released, developers, website, parent_platforms, background_image, publishers} = res
+            const { name, description_raw, genres, released, developers, website, parent_platforms, background_image, publishers } = res
             let genreName = '';
             let gameDevs = '';
             platformString = '';
@@ -431,24 +450,24 @@ const loadModal=  async(id) => {
             for (let i = 0; i < genres.length; i++) {
                 genreName += `${genres[i].name}, `;
             }
-            for (let i = 0; i < developers.length; i++){
-                gameDevs +=`${developers[i].name}, `
+            for (let i = 0; i < developers.length; i++) {
+                gameDevs += `${developers[i].name}, `
             }
-            for (let i = 0; i < parent_platforms.length; i++){
-                platformString +=`${parent_platforms[i].platform.name}, `
+            for (let i = 0; i < parent_platforms.length; i++) {
+                platformString += `${parent_platforms[i].platform.name}, `
 
             }
-            for (let i = 0; i < publishers.length; i++){
-                publisherString +=`${publishers[i].name}, `
+            for (let i = 0; i < publishers.length; i++) {
+                publisherString += `${publishers[i].name}, `
 
             }
-            gamePics.forEach((img) =>{
+            gamePics.forEach((img) => {
                 const image = img.image
                 gameScreenshot.push(image)
 
             })
 
-                modalContainer.innerHTML = ` <div class="modal">
+            modal.innerHTML = `
                 <div class="modal--gradient">
                     <div class="modal_wrapper">
                         <button class="modal-cross-btn" onclick="closeModal()">
@@ -544,29 +563,32 @@ const loadModal=  async(id) => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>`
-            
-            let modalBakcground = document.querySelector('.modal-container .modal');
-            modalBakcground.style.backgroundImage = `url(${background_image})`;
-            modalBakcground.style.backgroundSize = 'contain';
-            modalBakcground.style.backgroundRepeat = 'no-repeat';
-            
+                </div>`
 
-            
-        }  
-          
+            handleLightModal();
+            modal.style.backgroundImage = `${modalGradient}, url(${background_image})`;
+
+        }
+
+    } catch (error) {
+        console.log(error)
     }
-catch(error){
-    console.log(error)
-}}
+    hideSpinner();
+}
 
 function closeModal() {
-    modalContainer.innerHTML = ''
+
+    modal.innerHTML = '';
+    modal.style.backgroundImage = 'none';
+    modal.classList.add("hidden");
     modalContainer.classList.add("hidden");
 }
 
+function handleLightModal() {
+    if (body.classList.contains('lightMode')) {
+        modalGradient = 'linear-gradient(rgba(48, 48, 48, 0) 0%, rgb(255, 255, 255, 1) 65%)';
 
-
-
-
+    } else {
+        modalGradient = 'linear-gradient(rgba(48, 48, 48, 0) 0%, rgb(48, 48, 48, 1) 65%)';
+    }
+}

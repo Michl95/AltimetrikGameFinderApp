@@ -1,6 +1,6 @@
 .modal-container {
-    width: 67.25rem;
-    height: 49.56rem;
+    width: 100%;
+    height: 100%;
     position: fixed;
     left: 0;
     right: 0;
@@ -11,54 +11,59 @@
     display: block;
     color: $white;
     z-index: 1000000;
-    background: #303030;
+    background: $black-ish;
     .modal {
-        width: 100%;
-        height: 100%;
+        width: 67.25rem;
+        height: 49.56rem;
         border-radius: 1.5rem;
         background-size: cover;
+        background-repeat: no-repeat;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
         .modal--gradient {
             width: 100%;
             height: 100%;
             border-radius: 1.5rem;
-            background: linear-gradient(180deg, rgba(48, 48, 48, 0.0001) 0%, #303030 65%);
-            .modal_wrapper{
+            // background: linear-gradient(180deg, rgba(48, 48, 48, 0.0001) 0%, #303030 65%);
+            .modal_wrapper {
                 display: flex;
                 width: 100%;
                 height: 100%;
                 position: relative;
                 padding: 2rem;
-
                 .modal-cross-btn {
                     position: absolute;
                     right: 2rem;
+                    cursor: pointer;
                 }
-                .modal_wrapper_info{
+                .modal_wrapper_info {
                     display: flex;
                     flex-direction: column;
                     width: 60%;
-                    overflow-y:scroll;
-
-                    .modal_wrapper_info--icons{
-                        margin-top: 5.8rem;
+                    // overflow-y: scroll;
+                    // @include scrollBar;
+                    .modal_wrapper_info--icons {
+                        margin-top: 3rem;
                         width: 25%;
                         display: flex;
                         justify-content: space-evenly;
                     }
-
-                    .modal_wrapper_info-description{
-
-                        p{
+                    .modal_wrapper_info-description {
+                        p {
                             width: 95%;
+                            height: 8rem;
+                            overflow-y: scroll;
+                            @include scrollBar;
                         }
-
-                        .modal-gameTitle{
+                        .modal-gameTitle {
                             font-size: 3rem;
-                            
                         }
-                        .modal_wrapper_info-description--date{
+                        .modal_wrapper_info-description--date {
                             margin: .5rem 0 1.5rem 0;
-                            span{
+                            span {
                                 width: fit-content;
                                 background: $white;
                                 color: black;
@@ -67,52 +72,48 @@
                                 margin-left: .5rem
                             }
                         }
-                        .modal_buttons_container{
+                        .modal_buttons_container {
                             display: flex;
                             justify-content: space-between;
                             width: 79%;
-                            .emptyButton{
+                            .emptyButton {
                                 @include emptyButton(14rem, $green-nmb, 1.5rem, transparent, 2px solid $green-nmb);
                                 font-weight: 700;
                             }
-                            .filledButton{
+                            .filledButton {
                                 @include emptyButton(14rem, $white, 1.5rem, $green-nmb, 2px solid $green-nmb);
-
-                                .buttonHeart{
-                                    margin-left:.5rem;
+                                .buttonHeart {
+                                    margin-left: .5rem;
                                 }
                             }
                         }
                     }
-                    .modal_wrapper_details{
+                    .modal_wrapper_details {
                         display: flex;
                         margin-top: 1.5rem;
-
-                        .details_box{
+                        .details_box {
                             margin-top: 1rem;
-
-                            .detail-title{
+                            .detail-title {
                                 color: $grey-text;
                                 font-size: 1rem;
                                 font-weight: 500;
                             }
-                            .detail-description{
+                            .detail-description {
                                 margin-top: .4rem;
                                 font-weight: 400;
                             }
                         }
-                        .details_box--icon{
+                        .details_box--icon {
                             margin-top: 2rem;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
                             width: 9rem;
                         }
-                        .modal_wrapper_details--column2{
+                        .modal_wrapper_details--column2 {
                             margin-left: 4rem;
                         }
-
-                        a{
+                        a {
                             text-decoration: underline;
                             cursor: pointer;
                             color: $white;
@@ -120,25 +121,24 @@
                     }
                 }
             }
-            
         }
-        .modal_wrapper_media{
+        .modal_wrapper_media {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 40%;
             margin-top: 15rem;
-            img{
+            img {
                 width: 24.5rem;
                 object-fit: cover;
             }
-            .modal_wrapper_media--small-preview{
+            .modal_wrapper_media--small-preview {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
                 margin-top: 1rem;
-                img{
+                img {
                     width: 11.5rem;
                     height: 6.5rem;
                     margin: .5rem;
@@ -147,12 +147,29 @@
             }
         }
     }
+    .spinner--modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+    }
+    .hidden {
+        display: none;
+    }
+    .light {
+        box-shadow: 1px 1px 15px -5px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 1px 1px 15px -5px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 1px 1px 15px -5px rgba(0, 0, 0, 0.75);
+    }
 }
 
-.light{
-    background: $white;
-    color:#000;
-    background: #F0F0F0;
+.lightModal {
+    background: $white-ish;
+    color: #000;
 }
 
 .hidden {
