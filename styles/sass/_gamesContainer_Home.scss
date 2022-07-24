@@ -40,21 +40,37 @@
                 justify-content: space-between;
                 padding: 1rem 1rem 0 1rem;
             }
-            .game-card_releaseDate-container {
+            .game-card_container--details {
                 display: flex;
                 margin-top: 1rem;
-                padding: 0 1rem 0 1rem;
-                .realease {
-                    width: 6.8125rem;
-                    margin-top: .2rem;
+                .game-card_releaseDate-container {
+                    display: flex;
+                    padding: 0 1rem 0 1rem;
+                    flex-direction: column;
+                    text-align: left;
+                    width: 65%;
+                    .date_container {
+                        display: flex;
+                    }
+                    .realease {
+                        width: 6.8125rem;
+                    }
+                    .date {
+                        width: 7.8125rem;
+                    }
                 }
-                .date {
-                    width: 7.8125rem;
-                    margin-top: .2rem;
-                    margin-left: .8rem;
+                .game-card_genre--container {
+                    display: flex;
+                    // padding: 0 1rem 1rem 1rem;
+                    margin-top: .6rem;
+                    width: 130%;
+                    .genre {
+                        width: 5.8125rem;
+                    }
                 }
                 .game-card_icon--container {
                     display: flex;
+                    width: fit-content;
                     svg {
                         margin-left: 1rem;
                     }
@@ -66,13 +82,8 @@
                     }
                 }
             }
-            .game-card_genre--container {
-                display: flex;
-                padding: 0 1rem 1rem 1rem;
-                margin-top: .6rem;
-                .genre {
-                    width: 6.8125rem;
-                }
+            .game--description {
+                display: none;
             }
         }
     }
@@ -91,5 +102,80 @@
         right: 0;
         margin: auto;
         box-shadow: none;
+    }
+}
+
+.game-card_container--column {
+    margin: 0 2.5rem 0 16.4375rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 697px);
+    gap: 1.5rem;
+    justify-content: center;
+    button {
+        width: 43.5rem;
+        height: 33.625rem;
+        display: block;
+        border-radius: 12px;
+        background: $grey-card;
+        color: $white;
+        cursor: pointer;
+        .game-card_img_container {
+            position: relative;
+            height: 65%;
+            .game-card--heart {
+                position: absolute;
+                right: 1.5rem;
+                top: 1.5rem;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        .game-card_info--container {
+            height: 35%;
+            padding: 1rem;
+            // overflow-y: scroll;
+            // @include scrollBar;
+            .game-card_title-container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .game-card_container--details {
+                display: flex;
+                margin-top: 1rem;
+                .game-card_releaseDate-container {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 70%;
+                    .text_card-400 {
+                        margin-left: 1rem;
+                    }
+                    .date_container {
+                        display: flex;
+                    }
+                    .game-card_genre--container {
+                        display: flex;
+                    }
+                }
+                .game-card_icon--container {
+                    width: 30%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding-left: 4rem;
+                }
+            }
+            .game--description {
+                height: 4.5rem;
+                width: 95%;
+                margin: auto;
+                margin-top: 1rem;
+                overflow-y: scroll;
+                @include scrollBar;
+            }
+        }
     }
 }

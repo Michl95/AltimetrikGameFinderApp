@@ -22,31 +22,34 @@
         .light {
             color: #000;
         }
-        .thumbnail_view {
-            margin-right: 1.5rem;
-            cursor: pointer;
-        }
-        .option_switch {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.75rem;
-            cursor: pointer;
-            p {
-                margin-right: 1rem;
-                font-size: .9375rem;
-                font-weight: 400;
-            }
-            #switchOff {
-                display: none;
-            }
-        }
-        .option_view {
-            display: flex;
-            justify-content: end;
-            cursor: pointer;
-        }
         .option_container {
             margin-top: .7rem;
+            .option_switch {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.75rem;
+                cursor: pointer;
+                p {
+                    margin-right: 1rem;
+                    font-size: .9375rem;
+                    font-weight: 400;
+                }
+                #switchOff {
+                    display: none;
+                }
+            }
+            .option_view {
+                display: flex;
+                justify-content: end;
+                cursor: pointer;
+                .column_view {
+                    opacity: .4;
+                }
+                .gallery_view {
+                    margin-right: 1.5rem;
+                    cursor: pointer;
+                }
+            }
         }
     }
     .light {

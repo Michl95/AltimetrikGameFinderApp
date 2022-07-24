@@ -11,7 +11,8 @@
   border: none;
   text-decoration: none;
   list-style: none;
-  font-family: 'Exo', monospace; }
+  font-family: 'Exo', monospace;
+  transition: all .3s ease; }
 
 html,
 body {
@@ -456,26 +457,28 @@ header .logo_Login {
     font-weight: 400; }
   .main_second-page header .light {
     color: #000; }
-  .main_second-page header .thumbnail_view {
-    margin-right: 1.5rem;
-    cursor: pointer; }
-  .main_second-page header .option_switch {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.75rem;
-    cursor: pointer; }
-    .main_second-page header .option_switch p {
-      margin-right: 1rem;
-      font-size: .9375rem;
-      font-weight: 400; }
-    .main_second-page header .option_switch #switchOff {
-      display: none; }
-  .main_second-page header .option_view {
-    display: flex;
-    justify-content: end;
-    cursor: pointer; }
   .main_second-page header .option_container {
     margin-top: .7rem; }
+    .main_second-page header .option_container .option_switch {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      cursor: pointer; }
+      .main_second-page header .option_container .option_switch p {
+        margin-right: 1rem;
+        font-size: .9375rem;
+        font-weight: 400; }
+      .main_second-page header .option_container .option_switch #switchOff {
+        display: none; }
+    .main_second-page header .option_container .option_view {
+      display: flex;
+      justify-content: end;
+      cursor: pointer; }
+      .main_second-page header .option_container .option_view .column_view {
+        opacity: .4; }
+      .main_second-page header .option_container .option_view .gallery_view {
+        margin-right: 1.5rem;
+        cursor: pointer; }
 
 .main_second-page .light {
   background: #ffff; }
@@ -582,31 +585,38 @@ header .logo_Login {
         display: flex;
         justify-content: space-between;
         padding: 1rem 1rem 0 1rem; }
-      .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container {
+      .game-card_container .game-card .game-card_info--container .game-card_container--details {
         display: flex;
-        margin-top: 1rem;
-        padding: 0 1rem 0 1rem; }
-        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .realease {
-          width: 6.8125rem;
-          margin-top: .2rem; }
-        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .date {
-          width: 7.8125rem;
-          margin-top: .2rem;
-          margin-left: .8rem; }
-        .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container {
-          display: flex; }
-          .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container svg {
+        margin-top: 1rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_releaseDate-container {
+          display: flex;
+          padding: 0 1rem 0 1rem;
+          flex-direction: column;
+          text-align: left;
+          width: 65%; }
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_releaseDate-container .date_container {
+            display: flex; }
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_releaseDate-container .realease {
+            width: 6.8125rem; }
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_releaseDate-container .date {
+            width: 7.8125rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_genre--container {
+          display: flex;
+          margin-top: .6rem;
+          width: 130%; }
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_genre--container .genre {
+            width: 5.8125rem; }
+        .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_icon--container {
+          display: flex;
+          width: fit-content; }
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_icon--container svg {
             margin-left: 1rem; }
-          .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container .hide {
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_icon--container .hide {
             display: none; }
-          .game-card_container .game-card .game-card_info--container .game-card_releaseDate-container .game-card_icon--container .show {
+          .game-card_container .game-card .game-card_info--container .game-card_container--details .game-card_icon--container .show {
             display: block; }
-      .game-card_container .game-card .game-card_info--container .game-card_genre--container {
-        display: flex;
-        padding: 0 1rem 1rem 1rem;
-        margin-top: .6rem; }
-        .game-card_container .game-card .game-card_info--container .game-card_genre--container .genre {
-          width: 6.8125rem; }
+      .game-card_container .game-card .game-card_info--container .game--description {
+        display: none; }
   .game-card_container .light {
     background: #ffff;
     color: #000;
@@ -621,6 +631,78 @@ header .logo_Login {
     right: 0;
     margin: auto;
     box-shadow: none; }
+
+.game-card_container--column {
+  margin: 0 2.5rem 0 16.4375rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 697px);
+  gap: 1.5rem;
+  justify-content: center; }
+  .game-card_container--column button {
+    width: 43.5rem;
+    height: 33.625rem;
+    display: block;
+    border-radius: 12px;
+    background: #303030;
+    color: #ffff;
+    cursor: pointer; }
+    .game-card_container--column button .game-card_img_container {
+      position: relative;
+      height: 65%; }
+      .game-card_container--column button .game-card_img_container .game-card--heart {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem; }
+      .game-card_container--column button .game-card_img_container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0; }
+    .game-card_container--column button .game-card_info--container {
+      height: 35%;
+      padding: 1rem; }
+      .game-card_container--column button .game-card_info--container .game-card_title-container {
+        display: flex;
+        justify-content: space-between; }
+      .game-card_container--column button .game-card_info--container .game-card_container--details {
+        display: flex;
+        margin-top: 1rem; }
+        .game-card_container--column button .game-card_info--container .game-card_container--details .game-card_releaseDate-container {
+          display: flex;
+          justify-content: space-between;
+          width: 70%; }
+          .game-card_container--column button .game-card_info--container .game-card_container--details .game-card_releaseDate-container .text_card-400 {
+            margin-left: 1rem; }
+          .game-card_container--column button .game-card_info--container .game-card_container--details .game-card_releaseDate-container .date_container {
+            display: flex; }
+          .game-card_container--column button .game-card_info--container .game-card_container--details .game-card_releaseDate-container .game-card_genre--container {
+            display: flex; }
+        .game-card_container--column button .game-card_info--container .game-card_container--details .game-card_icon--container {
+          width: 30%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding-left: 4rem; }
+      .game-card_container--column button .game-card_info--container .game--description {
+        height: 4.5rem;
+        width: 95%;
+        margin: auto;
+        margin-top: 1rem;
+        overflow-y: scroll;
+        /* Firefox */ }
+        .game-card_container--column button .game-card_info--container .game--description::-webkit-scrollbar {
+          width: 12px;
+          cursor: pointer; }
+        .game-card_container--column button .game-card_info--container .game--description::-webkit-scrollbar-track {
+          background: #8c8787; }
+        .game-card_container--column button .game-card_info--container .game--description::-webkit-scrollbar-thumb {
+          background-color: #515151;
+          border-radius: 4px;
+          border: 1px solid #939393; }
+        .game-card_container--column button .game-card_info--container .game--description {
+          scrollbar-width: auto;
+          scrollbar-color: #515151 #8c8787;
+          cursor: pointer; }
 
 footer .linear-gradient {
   width: 100%;

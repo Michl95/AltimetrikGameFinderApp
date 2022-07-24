@@ -77,6 +77,21 @@ const convertDate = (releasedDate) => {
         day: 'numeric'
     })
 }
+
+const getDescription = async(x) => {
+    try {
+        const getDescription = await fetch(`https://api.rawg.io/api/games/${x}?key=0287d94a76d24548a822e6b8ce6351c8`, header);
+        if (getDescription.status === 200) {
+            const res = await getDescription.json();
+            descriptionRaw = res.description_raw
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 const loadGames = async() => {
     try {
         const response = await fetch(`${urlKey}&page=${page}`, header);
@@ -84,12 +99,11 @@ const loadGames = async() => {
             const res = await response.json();
             res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [], id: gameId, short_screenshots: gamePics }) => {
                 let genreName = '';
-
+                getDescription(gameId)
                 for (let i = 0; i < genres.length; i++) {
                     genreName += `${genres[i].name}, `;
                 }
-
-                games += `<button class="game-card" onclick="modalRender()" onclick="getGameId()" id="${gameId}">
+                games += `<button class="game-card" onclick="modalRender()" onclick="getGameId()"  id="${gameId}">
                 <div class="game-card_img_container">
                     <svg class="game-card--heart" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 2C3.11 2 2 3.113 2 4.467C2 5.991 2.882 7.617 4.246 9.21C5.392 10.547 6.784 11.753 8 12.726C9.216 11.753 10.608 10.546 11.754 9.21C13.118 7.617 14 5.99 14 4.467C14 3.113 12.89 2 11.5 2C10.11 2 9 3.113 9 4.467C9 4.73222 8.89464 4.98658 8.70711 5.17411C8.51957 5.36165 8.26522 5.467 8 5.467C7.73478 5.467 7.48043 5.36165 7.29289 5.17411C7.10536 4.98658 7 4.73222 7 4.467C7 3.113 5.89 2 4.5 2ZM8 1.659C7.57656 1.13976 7.0427 0.721428 6.43726 0.434448C5.83181 0.147467 5.17001 -0.000945666 4.5 4.53399e-06C2.024 4.53399e-06 0 1.99 0 4.467C0 6.718 1.267 8.807 2.727 10.511C4.208 12.24 6.024 13.729 7.386 14.789C7.56154 14.9256 7.7776 14.9997 8 14.9997C8.2224 14.9997 8.43846 14.9256 8.614 14.789C9.976 13.729 11.792 12.239 13.273 10.511C14.733 8.807 16 6.718 16 4.467C16 1.99 13.976 4.53399e-06 11.5 4.53399e-06C10.09 4.53399e-06 8.826 0.646004 8 1.659Z" fill="#ffffff"/>
@@ -101,22 +115,29 @@ const loadGames = async() => {
                         <h5 class="game-card--title text-title">${gameTitle}</h5>
                         <span class="game-card--number number">#${counter}</span>
                     </div>
-                    <div class="game-card_releaseDate-container">
-                        <p class="text_card-500 realease">Release date:</p>
-                        <p class="text_card-400 date">${convertDate(releasedDate)}</p>
+                    <div class="game-card_container--details">
+                        <div class="game-card_releaseDate-container">
+                            <div class="date_container">
+                                <p class="text_card-500 realease">Release date:</p>
+                                <p class="text_card-400 date">${convertDate(releasedDate)}</p>
+                            </div>
+                            <div class="game-card_genre--container">
+                                <p class="text_card-500 genre">Genres</p>
+                                <p class="text_card-400">${genreName}</p>
+                            </div>    
+                        </div>
                         <span class="game-card_icon--container">
-                        ${gamePlatforms(platforms)}
+                            ${gamePlatforms(platforms)}
                         </span>
                     </div>
-                    <div class="game-card_genre--container">
-                        <p class="text_card-500 genre">Genres</p>
-                        <p class="text_card-400">${genreName}</p>
-                    </div>
+                    <p class="game--description"></p>
                 </div>
             </button>`;
                 counter = counter + 1;
+
             });
             document.getElementById('game-card_container').innerHTML = games;
+
 
             if (page < 37397) {
 
@@ -132,7 +153,7 @@ const loadGames = async() => {
 
 
                 observer.observe(lastGameOneScreen)
-            }
+            };
 
         } else if (response.status === 401) {
             console.log('Your key is not working');
@@ -592,3 +613,26 @@ function handleLightModal() {
         modalGradient = 'linear-gradient(rgba(48, 48, 48, 0) 0%, rgb(48, 48, 48, 1) 65%)';
     }
 }
+
+
+
+
+// column view //
+
+const galleryView = document.querySelector('.gallery_view');
+const columnView = document.querySelector('.column_view');
+
+columnView.addEventListener('click', (e) => {
+    columnView.style.opacity = '1';
+    columnView.classList.add('active')
+    galleryView.style.opacity = '.4';
+    cardContainer.classList.remove('game-card_container')
+    cardContainer.classList.add('game-card_container--column')
+})
+galleryView.addEventListener('click', () => {
+    columnView.style.opacity = '.4';
+    columnView.classList.remove('active')
+    galleryView.style.opacity = '1';
+    cardContainer.classList.add('game-card_container')
+    cardContainer.classList.remove('game-card_container--column')
+})
