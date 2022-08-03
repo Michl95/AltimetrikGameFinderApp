@@ -78,19 +78,25 @@ const convertDate = (releasedDate) => {
     })
 }
 
+let descriptionRawArray = [];
+
 const getDescription = async(x) => {
+
     try {
         const getDescription = await fetch(`https://api.rawg.io/api/games/${x}?key=0287d94a76d24548a822e6b8ce6351c8`, header);
         if (getDescription.status === 200) {
             const res = await getDescription.json();
-            descriptionRaw = res.description_raw
+
+
+            return gamesDesc += `${res.description_raw}`
         }
     } catch (error) {
         console.log(error)
     }
 }
+getDescription();
 
-
+let gamesDesc = '';
 
 const loadGames = async() => {
     try {
@@ -99,7 +105,6 @@ const loadGames = async() => {
             const res = await response.json();
             res.results.forEach(({ name: gameTitle, genres: genres, released: releasedDate, background_image: bgImg, parent_platforms: platforms = [], id: gameId, short_screenshots: gamePics }) => {
                 let genreName = '';
-                getDescription(gameId)
                 for (let i = 0; i < genres.length; i++) {
                     genreName += `${genres[i].name}, `;
                 }
@@ -130,7 +135,7 @@ const loadGames = async() => {
                             ${gamePlatforms(platforms)}
                         </span>
                     </div>
-                    <p class="game--description"></p>
+                    <p class="game--description">${gamesDesc}</p>
                 </div>
             </button>`;
                 counter = counter + 1;
